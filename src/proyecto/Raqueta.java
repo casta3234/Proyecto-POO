@@ -38,14 +38,12 @@ public class Raqueta extends JLabel implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
          if( y>10 && e.getExtendedKeyCode() == KeyEvent.VK_W){
-             this.y--;
-             System.out.println("up");
+             this.y--;          
              this.y= this.y-this.velocidad;
              setLocation(this.x,this.y);
          }
          if( y<395 && e.getExtendedKeyCode() == KeyEvent.VK_S){
-            this.y++;
-             System.out.println("down");
+            this.y++;            
              this.y= this.y+this.velocidad;
              setLocation(this.x,this.y);
          }
