@@ -5,7 +5,6 @@
  */
 package proyecto;
 
-import com.sun.java.accessibility.util.AWTEventMonitor;
 import javax.swing.JFrame;
 
 /**
