@@ -19,9 +19,11 @@ public class Raqueta extends JLabel implements KeyListener{
     private int x;
     private int y;
     private int velocidad;
+    private boolean lado;
 
-    public Raqueta(String url, int x, int y) {
+    public Raqueta(String url, int x, int y,boolean l) {
         super();
+        this.lado = l;
         this.x = x;
         this.y = y;
         this.velocidad = 5;
@@ -37,18 +39,34 @@ public class Raqueta extends JLabel implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if (this.lado==true){
          if( y>10 && e.getExtendedKeyCode() == KeyEvent.VK_W){
              this.y--;          
              this.y= this.y-this.velocidad;
              setLocation(this.x,this.y);
+             System.out.println("up");
          }
          if( y<395 && e.getExtendedKeyCode() == KeyEvent.VK_S){
             this.y++;            
              this.y= this.y+this.velocidad;
              setLocation(this.x,this.y);
+             System.out.println("douwn");
          }
-   
-             
+        }
+       if (this.lado == false){
+         if( y>10 && e.getExtendedKeyCode() == KeyEvent.VK_UP){
+             this.y--;          
+             this.y= this.y-this.velocidad;
+             setLocation(this.x,this.y);
+             System.out.println("up");
+         }
+         if( y<395 && e.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+            this.y++;            
+             this.y= this.y+this.velocidad;
+             setLocation(this.x,this.y);
+             System.out.println("douwn");
+         }  
+       }
          
     }
 

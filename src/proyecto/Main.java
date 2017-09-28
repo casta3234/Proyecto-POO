@@ -5,6 +5,7 @@
  */
 package proyecto;
 
+    
 import javax.swing.JFrame;
 
 /**
@@ -20,8 +21,8 @@ public class Main {
         ventana.setResizable(false);
         Tablero t = new Tablero(ventana,"imagenes/tablero_referencia.png");
         ventana.add(t);
-        Raqueta r1 = new Raqueta("imagenes/raqueta_1.png", 0, 180);
-        Raqueta r2 = new Raqueta("imagenes/raqueta_2.png", 984, 180);
+        Raqueta r1 = new Raqueta("imagenes/raqueta_1.png", 0, 180,true);
+        Raqueta r2 = new Raqueta("imagenes/raqueta_2.png", 984, 180,false);
         Pelota p1 = new Pelota("imagenes/pelota_1.png",487,220);
         t.add(r1);
         t.add(r2);
@@ -29,6 +30,7 @@ public class Main {
         ventana.addKeyListener(r1);
         ventana.addKeyListener(r2);
         ventana.setVisible(true);
+        
     }
     
 }
