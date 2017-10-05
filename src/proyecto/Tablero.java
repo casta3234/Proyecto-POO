@@ -46,6 +46,15 @@ public class Tablero extends JPanel implements ActionListener {
 
     }
 
+    public void checkColision() {
+        if (this.p.getR().intersects(this.r1.getR())) {
+            this.p.setAngulox(-this.p.getAngulox());
+        } else if (this.p.getR().intersects(this.r2.getR())) {
+            this.p.setAngulox(-this.p.getAngulox());
+        }
+
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(this.img, 0, 0, null);
@@ -53,13 +62,6 @@ public class Tablero extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if (this.p.getR().intersects(this.r1.getR())) {
-            this.p.setAngulox(-this.p.getAngulox());
-        }
-        else if (this.p.getR().intersects(this.r2.getR())) {
-            this.p.setAngulox(-this.p.getAngulox());
-        }
-
+        checkColision();
     }
 }
