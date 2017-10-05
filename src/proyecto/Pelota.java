@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class Pelota extends JLabel implements ActionListener {
 
-    private final Timer timer;
+    private Timer timer;
     private int x;
     private int y;
     private int anguloy;
@@ -26,8 +26,8 @@ public class Pelota extends JLabel implements ActionListener {
         super();
         this.x = x;
         this.y = y;
-        this.angulox = 1 + (int) (Math.random() * 10) % -10;
-        this.anguloy = 1 + (int) (Math.random() * 10) % 10;
+        this.angulox = 5 + (int) (Math.random() * 10) % -10;
+        this.anguloy = 5 + (int) (Math.random() * 10) % 10;
         this.r = new Rectangle(this.x, this.y, 25, 25);
         this.timer = new Timer(50, (ActionListener) this);
         setIcon(new ImageIcon(url));
@@ -75,6 +75,14 @@ public class Pelota extends JLabel implements ActionListener {
 
     public Rectangle getR() {
         return r;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int suma) {
+        this.timer.setDelay(this.timer.getDelay() - suma);
     }
 
 }
