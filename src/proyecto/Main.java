@@ -21,22 +21,14 @@ public class Main  {
         ventana.setLayout(null);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
-        Tablero t = new Tablero(ventana, "imagenes/tablero_referencia.png");
+        Tablero t = new Tablero(ventana, "imagenes/tablero_referencia.png","imagenes/raqueta_1.png","imagenes/raqueta_2.png");
         ventana.add(t);
-        Raqueta r1 = new Raqueta("imagenes/raqueta_1.png", 0, 180, true);
-        Raqueta r2 = new Raqueta("imagenes/raqueta_2.png", 984, 180, false);
-        Pelota p1 = new Pelota("imagenes/pelota_1.png", 487, 220);
-        t.add(r1);
-        t.add(r2);
-        t.add(p1);
-        ventana.addKeyListener(r1);
-        ventana.addKeyListener(r2);
         ventana.setVisible(true);
         //ventana.addMouseListener(r1);
-        if (p1.getR().intersects(r1.getR())) {
-            System.out.println("choco");
-            p1.setAngulox(-p1.getAngulox());
-        }
+//        if (p1.getR().intersects(r1.getR())) {
+//            System.out.println("choco");
+//            p1.setAngulox(-p1.getAngulox());
+//        }
 
     }
 
