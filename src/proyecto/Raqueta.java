@@ -26,7 +26,7 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
         this.lado = l;
         this.x = x;
         this.y = y;
-        this.velocidad = 20;
+        this.velocidad = 10;
         this.r = new Rectangle(this.x, this.y, 10, 100);
         setIcon(new ImageIcon(url));
         setSize(10, 100);
@@ -40,13 +40,13 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
             if (y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_W) {
                 this.y--;
                 this.y = this.y - this.velocidad;
-                r.setBounds(this.x,this.y, 10, 100);
+                r.setLocation(this.x,this.y);
                 setLocation(this.x, this.y);
             }
             if (y < 395 && e.getExtendedKeyCode() == KeyEvent.VK_S) {
                 this.y++;
                 this.y = this.y + this.velocidad;
-                r.setBounds(this.x,this.y, 10, 100);
+                r.setLocation(this.x,this.y);
                 setLocation(this.x, this.y);
             }
         }
@@ -54,14 +54,14 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
             if (y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_UP) {
                 this.y--;
                 this.y = this.y - this.velocidad;
-                r.setBounds(this.x,this.y, 10, 100);
+                r.setLocation(this.x,this.y);
                 setLocation(this.x, this.y);
               
             }
             if (y < 395 && e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
                 this.y++;
                 this.y = this.y + this.velocidad;
-                r.setBounds(this.x,this.y, 10, 100);
+                r.setLocation(this.x,this.y);
                 setLocation(this.x, this.y);
                 
             }
