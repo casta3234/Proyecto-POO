@@ -6,12 +6,8 @@
 package proyecto;
 
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-//import java.awt.event.MouseEvent;
-//import java.awt.event.MouseListener;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -36,11 +32,6 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
         setSize(10, 100);
         setLocation(this.x, this.y);
         setVisible(true);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -80,34 +71,12 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    @Override
-//    public void mouseClicked(MouseEvent e) {
-// 
-//        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//
-//    @Override
-//    public void mousePressed(MouseEvent e) {
-//        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void mouseReleased(MouseEvent e) {
-//        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void mouseEntered(MouseEvent e) {
-//        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void mouseExited(MouseEvent e) {
-//        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

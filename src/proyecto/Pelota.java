@@ -6,11 +6,8 @@
 package proyecto;
 
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.Timer;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -29,8 +26,8 @@ public class Pelota extends JLabel implements ActionListener {
         super();
         this.x = x;
         this.y = y;
-        this.angulox = 1+(int) (Math.random() * 10) % -10;
-        this.anguloy = 1+(int) (Math.random() * 10) % 10;
+        this.angulox = 1 + (int) (Math.random() * 10) % -10;
+        this.anguloy = 1 + (int) (Math.random() * 10) % 10;
         this.r = new Rectangle(this.x, this.y, 25, 25);
         this.timer = new Timer(50, (ActionListener) this);
         setIcon(new ImageIcon(url));
@@ -42,9 +39,9 @@ public class Pelota extends JLabel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        setLocation(this.x-=this.angulox, this.y-= this.anguloy);
+        setLocation(this.x -= this.angulox, this.y -= this.anguloy);
         r.setBounds(this.x, this.y, 25, 25);
-        if(y<12||y>460){
+        if(y < 12 || y > 460){
             this.anguloy = -this.anguloy;
         }
     }
