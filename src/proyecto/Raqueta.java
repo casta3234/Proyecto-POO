@@ -19,7 +19,7 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
     private int y;
     private int velocidad;
     private boolean lado;
-    private Rectangle r;
+    public Rectangle r;
 
     public Raqueta(String url, int x, int y, boolean l) {
         super();
@@ -46,6 +46,7 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
             if (y < 395 && e.getExtendedKeyCode() == KeyEvent.VK_S) {
                 this.y++;
                 this.y = this.y + this.velocidad;
+                r.setBounds(this.x,this.y, 10, 100);
                 setLocation(this.x, this.y);
             }
         }
@@ -53,12 +54,14 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
             if (y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_UP) {
                 this.y--;
                 this.y = this.y - this.velocidad;
+                r.setBounds(this.x,this.y, 10, 100);
                 setLocation(this.x, this.y);
               
             }
             if (y < 395 && e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
                 this.y++;
                 this.y = this.y + this.velocidad;
+                r.setBounds(this.x,this.y, 10, 100);
                 setLocation(this.x, this.y);
                 
             }
