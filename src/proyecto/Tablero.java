@@ -49,11 +49,15 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
+    public void salida(){
+        if (this.p.getx()<0){
+            
+        }
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(this.img, 0, 0, null);
-        g.setColor(Color.black);
 
         
     }
