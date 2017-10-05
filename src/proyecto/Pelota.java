@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class Pelota extends JLabel implements ActionListener {
 
-    private Timer timer;
+    private final Timer timer;
     private int x;
     private int y;
     private int anguloy;
