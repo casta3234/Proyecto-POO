@@ -26,7 +26,7 @@ public class Raqueta extends JLabel implements KeyListener {//MouseListener{
         this.lado = l;
         this.x = x;
         this.y = y;
-        this.velocidad = 5;
+        this.velocidad = 20;
         this.r = new Rectangle(this.x, this.y, 10, 100);
         setIcon(new ImageIcon(url));
         setSize(10, 100);

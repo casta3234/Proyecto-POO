@@ -81,8 +81,8 @@ public class Pelota extends JLabel implements ActionListener {
         return timer;
     }
 
-    public void setTimer(int suma) {
-        this.timer.setDelay(this.timer.getDelay() - suma);
+    public void setTimer(int newTimer) {
+        this.timer.setDelay(newTimer);
     }
 
 }
