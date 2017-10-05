@@ -50,6 +50,10 @@ public class Pelota extends JLabel implements ActionListener {
         this.angulox = angulox;
     }
 
+    public void setAnguloy(int anguloy) {
+        this.anguloy = anguloy;
+    }
+
     public int getAngulox() {
         return angulox;
     }

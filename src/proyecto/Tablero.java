@@ -49,9 +49,19 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
-    public void salida(){
-        if (this.p.getx()<0){
-            
+
+    public void salida() {
+        if (this.p.getx() < -2) {
+            this.p.setx(487);
+            this.p.sety(220);
+            this.p.setAngulox(1 + (int) (Math.random() * 10) % -10);
+            this.p.setAnguloy( 1 + (int) (Math.random() * 10) % 10);
+        }
+        if (this.p.getx() > 1000) {
+            this.p.setx(487);
+            this.p.sety(220);
+            this.p.setAngulox(1 + (int) (Math.random() * 10) % -10);
+            this.p.setAnguloy( 1 + (int) (Math.random() * 10) % 10);
         }
     }
 
@@ -59,11 +69,11 @@ public class Tablero extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         g.drawImage(this.img, 0, 0, null);
 
-        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         checkColision();
+        salida();
     }
 }
