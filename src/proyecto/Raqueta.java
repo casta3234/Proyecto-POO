@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener {//MouseListener{
+public class Raqueta extends JLabel implements KeyListener {
 
     private int x;
     private int y;
