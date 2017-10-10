@@ -44,12 +44,17 @@ public class Tablero extends JPanel implements ActionListener {
     public void checkColision() {
         if (this.p.getR().intersects(this.r1.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-            this.p.setTimer(this.p.getTimer().getDelay() - 10);
+            if (this.p.getTimer().getDelay() > 30) {
+                this.p.setTimer(this.p.getTimer().getDelay() - 2);
+            }
         } else if (this.p.getR().intersects(this.r2.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-            this.p.setTimer(this.p.getTimer().getDelay() - 10);
-        }
+            if (this.p.getTimer().getDelay() > 30) {
+                this.p.setTimer(this.p.getTimer().getDelay() - 2);
 
+            }
+
+        }
     }
 
     public void salida() {
