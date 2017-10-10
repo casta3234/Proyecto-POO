@@ -19,7 +19,7 @@ public class Raqueta extends JLabel implements KeyListener {
     private int y;
     private int velocidad;
     private boolean lado;
-    public Rectangle r;
+    private Rectangle r;
 
     public Raqueta(String url, int x, int y, boolean l) {
         super();
