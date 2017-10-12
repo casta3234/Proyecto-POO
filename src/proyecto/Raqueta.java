@@ -13,79 +13,36 @@ import javax.swing.*;
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener {
+public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     private int x;
     private int y;
-    private int velocidad;
     private boolean lado;
     private Rectangle r;
+    private int tecla;
+    private Timer timer;
+    private int largo;
 
     public Raqueta(String url, int x, int y, boolean l) {
         super();
         this.lado = l;
         this.x = x;
         this.y = y;
-        this.velocidad = 50;
-        this.r = new Rectangle(this.x, this.y, 10, 100);
-        setIcon(new ImageIcon(url));
-        setSize(10, 100);
+        ImageIcon i = new ImageIcon(url);
+        setIcon(i);
+        this.largo = i.getIconHeight();
+        setSize(10, this.largo);
+        this.r = new Rectangle(this.x, this.y, 10, this.largo);
         setLocation(this.x, this.y);
         setVisible(true);
+        this.tecla = 0;
+        this.timer = new Timer(5, (ActionListener) this);
+        timer.start();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (this.lado == true) {
-            if (this.y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_W) {
-
-                this.y = this.y - this.velocidad;
-                if (this.y - this.velocidad > 10) {
-                    r.setLocation(this.x, this.y);
-                    setLocation(this.x, this.y);
-                } else {
-                    r.setLocation(this.x, 10);
-                    setLocation(this.x, 10);
-                }
-            }
-            if (y < 392 && e.getExtendedKeyCode() == KeyEvent.VK_S) {
-
-                this.y = this.y + this.velocidad;
-                if (this.y+this.velocidad < 392) {
-                    r.setLocation(this.x, this.y);
-                    setLocation(this.x, this.y);
-                } else {
-                    r.setLocation(this.x, 392);
-                    setLocation(this.x, 392);
-                }
-            }
-        }
-        if (this.lado == false) {
-            if (y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_UP) {
-                this.y = this.y - this.velocidad;
-                if (this.y - this.velocidad > 10) {
-                r.setLocation(this.x, this.y);
-                setLocation(this.x, this.y);
-
-            } else {
-                    r.setLocation(this.x, 10);
-                    setLocation(this.x, 10);
-                }
-            }
-            if (y < 392 && e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
-
-                this.y = this.y + this.velocidad;
-                if (this.y+this.velocidad < 392) {
-                r.setLocation(this.x, this.y);
-                setLocation(this.x, this.y);
-
-            } else {
-                    r.setLocation(this.x, 392);
-                    setLocation(this.x, 392);
-                }
-            }
-        }
-
+        this.tecla = e.getExtendedKeyCode();
     }
 
     public Rectangle getR() {
@@ -99,6 +56,40 @@ public class Raqueta extends JLabel implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.tecla = 0;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (this.lado == true) {
+            if (this.y > 9 && this.tecla == 87) {
+                this.y--;
+                r.setLocation(this.x, this.y);
+                setLocation(this.x, this.y);
+
+            }
+            if ((this.y < (492 - this.largo)) && (this.tecla == 83)) {
+                this.y++;
+                r.setLocation(this.x, this.y);
+                setLocation(this.x, this.y);
+
+            }
+        }
+        if (this.lado == false) {
+            if (this.y > 9 && this.tecla == 38) {
+                this.y--;
+                r.setLocation(this.x, this.y);
+                setLocation(this.x, this.y);
+            }
+            if ((this.y < (492 - this.largo)) && (this.tecla == 40)) {
+                this.y++;
+                r.setLocation(this.x, this.y);
+                setLocation(this.x, this.y);
+            }
+        }
+    }
+    
+    public void setTimer(int newTimer) {
+        this.timer.setDelay(newTimer);
     }
 }
