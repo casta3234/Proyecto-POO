@@ -89,7 +89,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         }
     }
     
-    public void setTimer(int newTimer) {
+    public void setDelay(int newTimer) {
         this.timer.setDelay(newTimer);
     }
 }

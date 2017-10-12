@@ -45,16 +45,15 @@ public class Tablero extends JPanel implements ActionListener {
     public void checkColision() {
         if (this.p.getR().intersects(this.r1.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-            if (this.p.getTimer().getDelay() > 30) {
-                this.p.setTimer(this.p.getTimer().getDelay() - 2);
-                this.timer = this.p.getTimer();
-                //System.out.println(this.p.getTimer().getDelay() + this.timer);
+            if (this.p.getDelay() > 30) {
+                this.p.setDelay(this.p.getDelay() - 2);
+                this.timer.setDelay(this.p.getDelay());
             }
         } else if (this.p.getR().intersects(this.r2.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-            if (this.p.getTimer().getDelay() > 30) {
-                this.p.setTimer(this.p.getTimer().getDelay() - 2);
-                this.timer = this.p.getTimer();
+            if (this.p.getDelay() > 30) {
+                this.p.setDelay(this.p.getDelay() - 2);
+                this.timer.setDelay(this.p.getDelay()); 
             }
         }
     }
@@ -65,8 +64,8 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.sety(220);
             this.p.setAngulox(5 + (int) (Math.random() * 10) % -10);
             this.p.setAnguloy(5 + (int) (Math.random() * 10) % -10);
-            this.p.setTimer(50);
-            this.timer = this.p.getTimer();
+            this.p.setDelay(50);
+            this.timer.setDelay(50);
             if (this.count < 3) {
                 this.count++;
             } else {

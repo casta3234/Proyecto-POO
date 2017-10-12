@@ -39,8 +39,10 @@ public class Pelota extends JLabel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        setLocation(this.x -= this.angulox, this.y -= this.anguloy);
+        this.x -= this.angulox;
+        this.y -= this.anguloy;
         r.setBounds(this.x, this.y, 25, 25);
+        setLocation(this.x , this.y );
         if (y < 15 || y > 460) {
             this.anguloy = -this.anguloy;
         }
@@ -77,11 +79,11 @@ public class Pelota extends JLabel implements ActionListener {
         return r;
     }
 
-    public Timer getTimer() {
-        return timer;
+    public int getDelay() {
+        return this.timer.getDelay();
     }
 
-    public void setTimer(int newTimer) {
+    public void setDelay(int newTimer) {
         this.timer.setDelay(newTimer);
     }
 
