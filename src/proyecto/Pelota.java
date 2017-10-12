@@ -26,10 +26,10 @@ public class Pelota extends JLabel implements ActionListener {
         super();
         this.x = x;
         this.y = y;
-        this.angulox = 5 + (int) (Math.random() * 10) % -10;
-        this.anguloy = 5 + (int) (Math.random() * 10) % -10;
+        this.angulox = 1 + (int) (Math.random() * 10) % 3;
+        this.anguloy = 1 + (int) (Math.random() * 10) % 3;
         this.r = new Rectangle(this.x, this.y, 25, 25);
-        this.timer = new Timer(50, (ActionListener) this);
+        this.timer = new Timer(10, (ActionListener) this);
         setIcon(new ImageIcon(url));
         setSize(25, 25);
         setLocation(this.x, this.y);

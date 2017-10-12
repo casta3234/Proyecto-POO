@@ -36,7 +36,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         setLocation(this.x, this.y);
         setVisible(true);
         this.tecla = 0;
-        this.timer = new Timer(5, (ActionListener) this);
+        this.timer = new Timer(4, (ActionListener) this);
         timer.start();
     }
 
@@ -64,27 +64,31 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         if (this.lado == true) {
             if (this.y > 9 && this.tecla == 87) {
                 this.y--;
-                r.setLocation(this.x, this.y);
+                
                 setLocation(this.x, this.y);
+                r.setLocation(this.x, this.y);
 
             }
             if ((this.y < (492 - this.largo)) && (this.tecla == 83)) {
                 this.y++;
-                r.setLocation(this.x, this.y);
+                
                 setLocation(this.x, this.y);
+                r.setLocation(this.x, this.y);
 
             }
         }
         if (this.lado == false) {
             if (this.y > 9 && this.tecla == 38) {
                 this.y--;
-                r.setLocation(this.x, this.y);
+               
                 setLocation(this.x, this.y);
+                r.setLocation(this.x, this.y);
             }
             if ((this.y < (492 - this.largo)) && (this.tecla == 40)) {
                 this.y++;
-                r.setLocation(this.x, this.y);
+               
                 setLocation(this.x, this.y);
+                r.setLocation(this.x, this.y);
             }
         }
     }
