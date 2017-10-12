@@ -47,22 +47,17 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.setAngulox(-this.p.getAngulox());
             if (this.p.getTimer().getDelay() > 30) {
                 this.p.setTimer(this.p.getTimer().getDelay() - 2);
+                this.timer = this.p.getTimer();
+                //System.out.println(this.p.getTimer().getDelay() + this.timer);
             }
         } else if (this.p.getR().intersects(this.r2.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-
             if (this.p.getTimer().getDelay() > 30) {
                 this.p.setTimer(this.p.getTimer().getDelay() - 2);
-
-            this.p.setTimer(this.p.getTimer().getDelay() - 10);
-            this.timer = this.p.getTimer();
-        }
-
-
+                this.timer = this.p.getTimer();
             }
-
         }
-    
+    }
 
     public void salida() {
         if ((this.p.getx() < -10) || (this.p.getx() > 1000)) {
@@ -72,7 +67,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.setAnguloy(5 + (int) (Math.random() * 10) % -10);
             this.p.setTimer(50);
             this.timer = this.p.getTimer();
-            if(this.count < 3) {
+            if (this.count < 3) {
                 this.count++;
             } else {
                 this.count -= 2;

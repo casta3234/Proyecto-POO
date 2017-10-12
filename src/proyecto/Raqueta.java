@@ -26,7 +26,7 @@ public class Raqueta extends JLabel implements KeyListener {
         this.lado = l;
         this.x = x;
         this.y = y;
-        this.velocidad = 10;
+        this.velocidad = 50;
         this.r = new Rectangle(this.x, this.y, 10, 100);
         setIcon(new ImageIcon(url));
         setSize(10, 100);
@@ -37,33 +37,52 @@ public class Raqueta extends JLabel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (this.lado == true) {
-            if (y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_W) {
-                this.y--;
+            if (this.y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_W) {
+
                 this.y = this.y - this.velocidad;
-                r.setLocation(this.x,this.y);
-                setLocation(this.x, this.y);
+                if (this.y - this.velocidad > 10) {
+                    r.setLocation(this.x, this.y);
+                    setLocation(this.x, this.y);
+                } else {
+                    r.setLocation(this.x, 10);
+                    setLocation(this.x, 10);
+                }
             }
-            if (y < 395 && e.getExtendedKeyCode() == KeyEvent.VK_S) {
-                this.y++;
+            if (y < 392 && e.getExtendedKeyCode() == KeyEvent.VK_S) {
+
                 this.y = this.y + this.velocidad;
-                r.setLocation(this.x,this.y);
-                setLocation(this.x, this.y);
+                if (this.y+this.velocidad < 392) {
+                    r.setLocation(this.x, this.y);
+                    setLocation(this.x, this.y);
+                } else {
+                    r.setLocation(this.x, 392);
+                    setLocation(this.x, 392);
+                }
             }
         }
         if (this.lado == false) {
             if (y > 10 && e.getExtendedKeyCode() == KeyEvent.VK_UP) {
-                this.y--;
                 this.y = this.y - this.velocidad;
-                r.setLocation(this.x,this.y);
+                if (this.y - this.velocidad > 10) {
+                r.setLocation(this.x, this.y);
                 setLocation(this.x, this.y);
-              
+
+            } else {
+                    r.setLocation(this.x, 10);
+                    setLocation(this.x, 10);
+                }
             }
-            if (y < 395 && e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
-                this.y++;
+            if (y < 392 && e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
+
                 this.y = this.y + this.velocidad;
-                r.setLocation(this.x,this.y);
+                if (this.y+this.velocidad < 392) {
+                r.setLocation(this.x, this.y);
                 setLocation(this.x, this.y);
-                
+
+            } else {
+                    r.setLocation(this.x, 392);
+                    setLocation(this.x, 392);
+                }
             }
         }
 

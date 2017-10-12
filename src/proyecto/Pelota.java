@@ -41,7 +41,7 @@ public class Pelota extends JLabel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         setLocation(this.x -= this.angulox, this.y -= this.anguloy);
         r.setBounds(this.x, this.y, 25, 25);
-        if (y < 12 || y > 460) {
+        if (y < 15 || y > 460) {
             this.anguloy = -this.anguloy;
         }
     }
