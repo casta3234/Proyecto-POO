@@ -23,22 +23,27 @@ public class Tablero extends JPanel implements ActionListener {
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
-        this.r1 = new Raqueta(urlR1, 0, 180, true);
-        this.r2 = new Raqueta(urlR2, 984, 180, false);
-        add(r1);
-        add(r2);
+        
+        this.r1 = new Raqueta(urlR1, 0, 180, true, 5);
+        this.r2 = new Raqueta(urlR2, 984, 180, false, 3);
+        v.add(r1);
+        v.add(r2);
         v.addKeyListener(r1);
         v.addKeyListener(r2);
+        
         this.p = new Pelota("imagenes/pelota_3.png", 487, 220);
         add(p);
-        this.timer = new Timer(50, (ActionListener) this);
+                
         ImageIcon i = new ImageIcon(url);
         this.img = i.getImage();
         setSize(v.getSize());
         setLocation(0, 0);
         setLayout(null);
         setVisible(true);
+        
+        this.timer = new Timer(50, (ActionListener) this);
         this.timer.start();
+        
         this.count = 0;
     }
 
@@ -78,7 +83,6 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(this.img, 0, 0, null);
-
     }
 
     @Override

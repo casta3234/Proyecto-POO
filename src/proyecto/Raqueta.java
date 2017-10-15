@@ -5,7 +5,7 @@
  */
 package proyecto;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -22,21 +22,30 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private int tecla;
     private Timer timer;
     private int largo;
+    
 
-    public Raqueta(String url, int x, int y, boolean l) {
+    public Raqueta(String url, int x, int y, boolean l, int largo) {
         super();
         this.lado = l;
         this.x = x;
         this.y = y;
-        ImageIcon i = new ImageIcon(url);
-        setIcon(i);
-        this.largo = i.getIconHeight();
-        setSize(10, this.largo);
-        this.r = new Rectangle(this.x, this.y, 10, this.largo);
+        this.largo = largo;
+        this.tecla = 0;
+        
+        setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
+        setSize(10, 40 + (this.largo * 20));
+        
+        add(new JLabel(new ImageIcon(url + "/raquetaInicio.png")));
+        for (int i = 0; i < this.largo; i++) {
+            add(new JLabel(new ImageIcon(url + "/raquetaMedio.png")));
+        }       
+        add(new JLabel(new ImageIcon(url + "/raquetaFin.png")));
+        
         setLocation(this.x, this.y);
         setVisible(true);
-        this.tecla = 0;
-        this.timer = new Timer(4, (ActionListener) this);
+        this.r = new Rectangle(this.x, this.y, 10, 40 + (this.largo * 20));
+        
+        this.timer = new Timer(1, (ActionListener) this);
         timer.start();
     }
 
@@ -51,7 +60,6 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -61,32 +69,30 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        movimiento(this.tecla);
+    }
+    
+    private void movimiento (int numtecla) {
         if (this.lado == true) {
-            if (this.y > 9 && this.tecla == 87) {
-                this.y--;
-                
+            if (this.y > 9 && numtecla == 87) {
+                this.y -= 2;                
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
-
             }
-            if ((this.y < (492 - this.largo)) && (this.tecla == 83)) {
-                this.y++;
-                
+            if ((this.y < (492 - this.largo)) && (numtecla == 83)) {
+                this.y += 2;                
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
-
             }
         }
         if (this.lado == false) {
-            if (this.y > 9 && this.tecla == 38) {
-                this.y--;
-               
+            if (this.y > 9 && numtecla == 38) {
+                this.y -= 2;               
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
             }
-            if ((this.y < (492 - this.largo)) && (this.tecla == 40)) {
-                this.y++;
-               
+            if ((this.y < (492 - this.largo)) && (numtecla == 40)) {
+                this.y += 2;               
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
             }
