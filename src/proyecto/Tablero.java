@@ -22,8 +22,7 @@ public class Tablero extends JPanel implements ActionListener {
     private int count;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
-        super();
-        
+        super();        
         this.r1 = new Raqueta(urlR1, 0, 180, true, 5);
         this.r2 = new Raqueta(urlR2, 984, 180, false, 3);
         v.add(r1);
@@ -41,8 +40,9 @@ public class Tablero extends JPanel implements ActionListener {
         setLayout(null);
         setVisible(true);
         
-        this.timer = new Timer(50, (ActionListener) this);
+        this.timer = new Timer(5, (ActionListener) this);
         this.timer.start();
+        this.p.setDelay(this.timer.getDelay());
         
         this.count = 0;
     }

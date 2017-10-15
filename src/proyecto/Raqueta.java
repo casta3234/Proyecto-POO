@@ -29,23 +29,23 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.lado = l;
         this.x = x;
         this.y = y;
-        this.largo = largo;
+        this.largo = 40 + (largo * 20);
         this.tecla = 0;
         
         setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
-        setSize(10, 40 + (this.largo * 20));
+        setSize(10, this.largo);
         
         add(new JLabel(new ImageIcon(url + "/raquetaInicio.png")));
-        for (int i = 0; i < this.largo; i++) {
+        for (int i = 0; i < largo; i++) {
             add(new JLabel(new ImageIcon(url + "/raquetaMedio.png")));
         }       
         add(new JLabel(new ImageIcon(url + "/raquetaFin.png")));
         
         setLocation(this.x, this.y);
         setVisible(true);
-        this.r = new Rectangle(this.x, this.y, 10, 40 + (this.largo * 20));
+        this.r = new Rectangle(this.x, this.y, 10, this.largo);
         
-        this.timer = new Timer(1, (ActionListener) this);
+        this.timer = new Timer(5, (ActionListener) this);
         timer.start();
     }
 
@@ -75,24 +75,24 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private void movimiento (int numtecla) {
         if (this.lado == true) {
             if (this.y > 9 && numtecla == 87) {
-                this.y -= 2;                
+                this.y -= 3;                
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
             }
             if ((this.y < (492 - this.largo)) && (numtecla == 83)) {
-                this.y += 2;                
+                this.y += 3;                
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
             }
         }
         if (this.lado == false) {
             if (this.y > 9 && numtecla == 38) {
-                this.y -= 2;               
+                this.y -= 3;               
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
             }
             if ((this.y < (492 - this.largo)) && (numtecla == 40)) {
-                this.y += 2;               
+                this.y += 3;               
                 setLocation(this.x, this.y);
                 r.setLocation(this.x, this.y);
             }
