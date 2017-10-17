@@ -19,7 +19,6 @@ public class Tablero extends JPanel implements ActionListener {
     private Image img;
     private Raqueta r1, r2;
     private Pelota p;
-    private int count;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();        
@@ -30,7 +29,7 @@ public class Tablero extends JPanel implements ActionListener {
         v.addKeyListener(r1);
         v.addKeyListener(r2);
         
-        this.p = new Pelota("imagenes/pelota_3.png", 487, 220);
+        this.p = new Pelota(487, 220);
         add(p);
                 
         ImageIcon i = new ImageIcon(url);
@@ -43,8 +42,6 @@ public class Tablero extends JPanel implements ActionListener {
         this.timer = new Timer(5, (ActionListener) this);
         this.timer.start();
         this.p.setDelay(this.timer.getDelay());
-        
-        this.count = 0;
     }
 
     public void checkColision() {
@@ -71,12 +68,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.setAnguloy(1 + (int) (Math.random() * 10) % 3);
             this.p.setDelay(10);
             this.timer.setDelay(10);
-            if (this.count < 3) {
-                this.count++;
-            } else {
-                this.count -= 2;
-            }
-            this.p.setIcon(new ImageIcon("imagenes/pelota_" + this.count + ".png"));
+            this.p.changePelota();
         }
         
     }
