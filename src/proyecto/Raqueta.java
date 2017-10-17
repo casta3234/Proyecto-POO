@@ -36,13 +36,13 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
         setSize(10, 40 + (this.largo * 20));
 
-        add(new JLabel(new ImageIcon(this.url + "/raquetaInicio.png")));
+        add(new JLabel(new ImageIcon(this.url + "/raquetaInicio.png")), 0);
         
         for (int i = 0; i < largo; i++) {
-            add(new JLabel(new ImageIcon(this.url + "/raquetaMedio.png")));
+            add(new JLabel(new ImageIcon(this.url + "/raquetaMedio.png")), i + 1);
         }
         
-        add(new JLabel(new ImageIcon(this.url + "/raquetaFin.png")));
+        add(new JLabel(new ImageIcon(this.url + "/raquetaFin.png")), this.largo + 1);
 
         setLocation(this.x, this.y);
         setVisible(true);
