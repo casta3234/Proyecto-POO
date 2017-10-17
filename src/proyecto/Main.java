@@ -18,6 +18,7 @@ public class Main {
         ventana.setSize(1000, 530);
         ventana.setLayout(null);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
         Tablero t = new Tablero(ventana, "imagenes/tablero_referencia.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
         ventana.add(t);
