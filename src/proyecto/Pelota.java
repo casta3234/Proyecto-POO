@@ -21,8 +21,9 @@ public class Pelota extends JLabel implements ActionListener {
     private int anguloy;
     private int angulox;
     private Rectangle r;
+    private int contador;
 
-    public Pelota(String url, int x, int y) {
+    public Pelota(int x, int y) {
         super();
         this.x = x;
         this.y = y;
@@ -31,13 +32,15 @@ public class Pelota extends JLabel implements ActionListener {
         
         this.r = new Rectangle(this.x, this.y, 25, 25);
         
-        setIcon(new ImageIcon(url));
+        setIcon(new ImageIcon("imagenes/Pelotas/pelota_3.png"));
         setSize(25, 25);
         setLocation(this.x, this.y);
         setVisible(true);
         
         this.timer = new Timer(5, (ActionListener) this);
         timer.start();
+        
+        this.contador = 0;
     }
 
     @Override
@@ -89,5 +92,13 @@ public class Pelota extends JLabel implements ActionListener {
     public void setDelay(int newTimer) {
         this.timer.setDelay(newTimer);
     }
-
+    
+    public void changePelota() {
+        if (this.contador < 3) {
+                this.contador++;
+            } else {
+                this.contador -= 2;
+            }
+            setIcon(new ImageIcon("imagenes/Pelotas/pelota_" + this.contador + ".png"));
+    }
 }
