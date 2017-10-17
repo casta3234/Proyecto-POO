@@ -6,6 +6,7 @@
 package proyecto;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +16,9 @@ public class Bala extends Rectangle {
 
     public Bala(int x, int y, int width, int height) {
         super(x, y, width, height);
+
     }
+    
     
     public void paint (Graphics g){
       g.drawRect(this.x, this.y, this.width, this.height);
