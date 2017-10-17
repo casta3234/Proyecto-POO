@@ -21,8 +21,8 @@ private String url;
         
     public Bloque(String url) {
         super();
-        this.x = (int) Math.random() * 700 + 300;
-        this.y = (int) Math.random() * 490 + 15;
+        this.x = (int) (700 * Math.random() + 300);
+        this.y = (int) (Math.random() * 490 + 15);
     }
  
 }
