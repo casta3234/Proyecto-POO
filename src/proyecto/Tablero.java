@@ -77,8 +77,6 @@ public class Tablero extends JPanel implements ActionListener {
                 this.count -= 2;
             }
             this.p.setIcon(new ImageIcon("imagenes/pelota_" + this.count + ".png"));
-            this.r1.changeLargo(-1);
-            this.r2.changeLargo(1);
         }
         
     }
