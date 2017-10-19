@@ -101,6 +101,6 @@ public class Pelota extends JLabel implements ActionListener {
             } else {
                 this.contador -= 2;
             }
-            setIcon(new ImageIcon("imagenes/Pelotas/pelota_" + this.contador + ".png"));
+            this.setIcon(new ImageIcon("imagenes/Pelotas/pelota_" + this.contador + ".png"));
     }
 }

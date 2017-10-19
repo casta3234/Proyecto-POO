@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         JFrame ventana = new JFrame("Brick Game");
-        ventana.setSize(1000, 530);
+        ventana.setSize(1005, 530);
         ventana.setLayout(null);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setLocationRelativeTo(null);

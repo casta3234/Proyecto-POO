@@ -24,7 +24,7 @@ public class Tablero extends JPanel implements ActionListener {
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();        
         this.r1 = new Raqueta(urlR1, 0, 180, true);
-        this.r2 = new Raqueta(urlR2, 984, 180, false);
+        this.r2 = new Raqueta(urlR2, 990, 180, false);
         v.add(r1);
         v.add(r2);
         v.addKeyListener(r1);
@@ -66,27 +66,28 @@ public class Tablero extends JPanel implements ActionListener {
     public void salida() {
         if (this.p.getx() < 0) {
             this.p.setx(this.r1.getWidth());
-            this.p.sety(this.r1.getY() + (this.r1.getHeight()/2));
+            this.p.sety(this.r1.getY() + (this.r1.getHeight()/2)+5);
             this.p.setAngulox(-1 * (1 + (int) (Math.random() * 10) % 3));
             this.p.setAnguloy(-1 * (1 + (int) (Math.random() * 10) % 3));
             this.p.setDelay(10);
             this.timer.setDelay(10);
             this.p.changePelota();
-            this.r1.changeLargo(-1);
-            this.r2.changeLargo(1);
+
         }
         
-        if(this.p.getx() > 1000){
-            this.p.setx(this.width - this.r2.getWidth() - this.p.getWidth());
-            this.p.sety(this.r2.getY() + (this.r2.getHeight()/2));
+        if(this.p.getx() > 1010){
+            this.p.setx(this.width - this.r2.getWidth() - this.p.getWidth()-10);
+            this.p.sety(this.r2.getY() + (this.r2.getHeight()/2)+5);
             this.p.setAngulox(1 + (int) (Math.random() * 10) % 3);
             this.p.setAnguloy(1 + (int) (Math.random() * 10) % 3);
             this.p.setDelay(10);
             this.timer.setDelay(10);
             this.p.changePelota();
-            this.r2.changeLargo(-1);
-            this.r1.changeLargo(1);
         }
+        this.r1.setVisible(false);
+        this.r1.setVisible(true);
+        this.r2.setVisible(false);
+        this.r2.setVisible(true);
     }
 
     @Override

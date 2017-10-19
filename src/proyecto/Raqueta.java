@@ -64,10 +64,13 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         this.tecla = e.getExtendedKeyCode();
     }
+    
 
     public Rectangle getR() {
         return r;
     }
+
+        
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -135,4 +138,5 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         }
     }
+    
 }
