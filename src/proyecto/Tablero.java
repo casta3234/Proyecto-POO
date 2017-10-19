@@ -69,6 +69,8 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.setDelay(10);
             this.timer.setDelay(10);
             this.p.changePelota();
+            this.r1.changeLargo(-1);
+            this.r2.changeLargo(1);
         }
         
         if(this.p.getx() > 1000){
@@ -79,6 +81,8 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.setDelay(10);
             this.timer.setDelay(10);
             this.p.changePelota();
+            this.r2.changeLargo(-1);
+            this.r1.changeLargo(1);
         }
     }
 

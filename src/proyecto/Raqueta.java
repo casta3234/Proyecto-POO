@@ -23,6 +23,9 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private Timer timer;
     private int largo;
     private String url;
+    private ImageIcon inicio;
+    private ImageIcon medio;
+    private ImageIcon fin;
 
     public Raqueta(String url, int x, int y, boolean l) {
         super();
@@ -34,20 +37,24 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.url = url;
 
         setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
-        setSize(10, 40 + (this.largo * 20));
 
-        add(new JLabel(new ImageIcon(this.url + "/raquetaInicio.png")), 0);
-        
+        this.inicio = new ImageIcon(this.url + "/raquetaInicio.png");
+
+        add(new JLabel(this.inicio), 0);
+
         for (int i = 0; i < largo; i++) {
-            add(new JLabel(new ImageIcon(this.url + "/raquetaMedio.png")), i + 1);
+            this.medio = new ImageIcon(this.url + "/raquetaMedio.png");
+            add(new JLabel(this.medio), i + 1);
         }
-        
-        add(new JLabel(new ImageIcon(this.url + "/raquetaFin.png")), this.largo + 1);
 
+        this.fin = new ImageIcon(this.url + "/raquetaFin.png");
+        add(new JLabel(this.fin), this.largo + 1);
+
+        setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         setLocation(this.x, this.y);
         setVisible(true);
 
-        this.r = new Rectangle(this.x, this.y, 10, 40 + (this.largo * 20));
+        this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
 
         this.timer = new Timer(5, (ActionListener) this);
         timer.start();
@@ -110,20 +117,22 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     public void changeLargo(int aumento) {
         if ((this.largo + aumento >= 0) && (this.largo + aumento < 8)) {
             this.largo += aumento;
-            
+
             setVisible(false);
 
-            setSize(10, 40 + (this.largo * 20));
-
-            for (int i = 0; i < this.largo; i++) {
-                add(new JLabel(new ImageIcon(this.url + "/raquetaMedio.png")), i + 1);
+            for (int i = 0; i < largo; i++) {
+                this.medio = new ImageIcon(this.url + "/raquetaMedio.png");
+                add(new JLabel(this.medio), i + 1);
             }
 
-            add(new JLabel(new ImageIcon(this.url + "/raquetaFin.png")), this.largo + 1);
+            this.fin = new ImageIcon(this.url + "/raquetaFin.png");
+            add(new JLabel(this.fin), this.largo + 1);
 
+            setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
             setLocation(this.x, this.y);
             setVisible(true);
-            this.r = new Rectangle(this.x, this.y, 10, 40 + (this.largo * 20));
+
+            this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         }
     }
 }
