@@ -19,6 +19,7 @@ public class Tablero extends JPanel implements ActionListener {
     private Image img;
     private Raqueta r1, r2;
     private Pelota p;
+    private int width;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();        
@@ -28,6 +29,8 @@ public class Tablero extends JPanel implements ActionListener {
         v.add(r2);
         v.addKeyListener(r1);
         v.addKeyListener(r2);
+        
+        this.width = v.getWidth();
         
         this.p = new Pelota(487, 220);
         add(p);
@@ -62,8 +65,8 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void salida() {
         if (this.p.getx() < 0) {
-            this.p.setx(20);
-            this.p.sety(this.r1.getY()+(this.r1.getHeight()/2));
+            this.p.setx(this.r1.getWidth());
+            this.p.sety(this.r1.getY() + (this.r1.getHeight()/2));
             this.p.setAngulox(-1 * (1 + (int) (Math.random() * 10) % 3));
             this.p.setAnguloy(-1 * (1 + (int) (Math.random() * 10) % 3));
             this.p.setDelay(10);
@@ -74,8 +77,10 @@ public class Tablero extends JPanel implements ActionListener {
         }
         
         if(this.p.getx() > 1000){
-            this.p.setx(955);
-            this.p.sety(this.r2.getY()+(this.r2.getHeight()/2));
+            int hola = this.width - this.r2.getWidth() - this.p.getWidth();
+            this.p.setx(hola);
+            System.out.println(hola);
+            this.p.sety(this.r2.getY() + (this.r2.getHeight()/2));
             this.p.setAngulox(1 + (int) (Math.random() * 10) % 3);
             this.p.setAnguloy(1 + (int) (Math.random() * 10) % 3);
             this.p.setDelay(10);
