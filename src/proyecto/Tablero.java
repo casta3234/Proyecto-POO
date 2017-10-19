@@ -62,8 +62,8 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void salida() {
         if (this.p.getx() < 0) {
-            this.p.setx(487);
-            this.p.sety(220);
+            this.p.setx(20);
+            this.p.sety(this.r1.getY()+(this.r1.getHeight()/2));
             this.p.setAngulox(-1 * (1 + (int) (Math.random() * 10) % 3));
             this.p.setAnguloy(-1 * (1 + (int) (Math.random() * 10) % 3));
             this.p.setDelay(10);
@@ -74,8 +74,8 @@ public class Tablero extends JPanel implements ActionListener {
         }
         
         if(this.p.getx() > 1000){
-            this.p.setx(487);
-            this.p.sety(220);
+            this.p.setx(955);
+            this.p.sety(this.r2.getY()+(this.r2.getHeight()/2));
             this.p.setAngulox(1 + (int) (Math.random() * 10) % 3);
             this.p.setAnguloy(1 + (int) (Math.random() * 10) % 3);
             this.p.setDelay(10);
