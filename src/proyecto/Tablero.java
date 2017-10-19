@@ -59,7 +59,7 @@ public class Tablero extends JPanel implements ActionListener {
         if (this.estadoR1) {
             if (antR1) {
                 this.p.setAngulox(-this.p.getAngulox());
-                this.p.setAngulox(-this.p.getAnguloy());
+                this.p.setAnguloy(-this.p.getAnguloy());
                 if (this.p.getDelay() > 2) {
                     this.p.setDelay(this.p.getDelay() - 2);
                     this.timer.setDelay(this.p.getDelay());
@@ -76,7 +76,7 @@ public class Tablero extends JPanel implements ActionListener {
         if (this.estadoR2) {
             if (antR2) {
                 this.p.setAngulox(-this.p.getAngulox());
-                this.p.setAngulox(-this.p.getAnguloy());
+                this.p.setAnguloy(-this.p.getAnguloy());
                 if (this.p.getDelay() > 2) {
                     this.p.setDelay(this.p.getDelay() - 2);
                     this.timer.setDelay(this.p.getDelay());
