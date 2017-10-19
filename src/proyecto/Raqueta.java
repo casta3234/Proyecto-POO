@@ -36,28 +36,28 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.tecla = 0;
         this.url = url;
 
-        setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
+        this.setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
 
         this.inicio = new ImageIcon(this.url + "/raquetaInicio.png");
 
-        add(new JLabel(this.inicio), 0);
+        this.add(new JLabel(this.inicio), 0);
 
         for (int i = 0; i < largo; i++) {
             this.medio = new ImageIcon(this.url + "/raquetaMedio.png");
-            add(new JLabel(this.medio), i + 1);
+            this.add(new JLabel(this.medio), i + 1);
         }
 
         this.fin = new ImageIcon(this.url + "/raquetaFin.png");
-        add(new JLabel(this.fin), this.largo + 1);
+        this.add(new JLabel(this.fin), this.largo + 1);
 
-        setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
-        setLocation(this.x, this.y);
-        setVisible(true);
+        this.setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
+        this.setLocation(this.x, this.y);
+        this.setVisible(true);
 
         this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
 
         this.timer = new Timer(5, (ActionListener) this);
-        timer.start();
+        this.timer.start();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     
 
     public Rectangle getR() {
-        return r;
+        return this.r;
     }
 
         
@@ -83,32 +83,32 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        movimiento(this.tecla);
+        this.movimiento(this.tecla);
     }
 
     private void movimiento(int numtecla) {
         if (this.lado == true) {
             if (this.y > 9 && numtecla == 87) {
                 this.y -= 3;
-                setLocation(this.x, this.y);
-                r.setLocation(this.x, this.y);
+               this.setLocation(this.x, this.y);
+                this.r.setLocation(this.x, this.y);
             }
             if ((this.y < (490 - (40 + (this.largo * 20)))) && (numtecla == 83)) {
                 this.y += 3;
-                setLocation(this.x, this.y);
-                r.setLocation(this.x, this.y);
+                this.setLocation(this.x, this.y);
+                this.r.setLocation(this.x, this.y);
             }
         }
         if (this.lado == false) {
             if (this.y > 9 && numtecla == 38) {
                 this.y -= 3;
-                setLocation(this.x, this.y);
-                r.setLocation(this.x, this.y);
+                this.setLocation(this.x, this.y);
+                this.r.setLocation(this.x, this.y);
             }
             if ((this.y < (490 - (40 + (this.largo * 20)))) && (numtecla == 40)) {
                 this.y += 3;
-                setLocation(this.x, this.y);
-                r.setLocation(this.x, this.y);
+                this.setLocation(this.x, this.y);
+                this.r.setLocation(this.x, this.y);
             }
         }
     }
@@ -121,7 +121,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         if ((this.largo + aumento >= 0) && (this.largo + aumento < 8)) {
             this.largo += aumento;
 
-            setVisible(false);
+            this.setVisible(false);
 
             for (int i = 0; i < largo; i++) {
                 this.medio = new ImageIcon(this.url + "/raquetaMedio.png");
@@ -129,11 +129,11 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             }
 
             this.fin = new ImageIcon(this.url + "/raquetaFin.png");
-            add(new JLabel(this.fin), this.largo + 1);
+            this.add(new JLabel(this.fin), this.largo + 1);
 
-            setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
-            setLocation(this.x, this.y);
-            setVisible(true);
+            this.setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
+            this.setLocation(this.x, this.y);
+            this.setVisible(true);
 
             this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         }

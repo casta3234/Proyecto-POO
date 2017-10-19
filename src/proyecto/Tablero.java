@@ -21,35 +21,44 @@ public class Tablero extends JPanel implements ActionListener {
     private Pelota p;
     private int width;
     private boolean estadoR1, estadoR2;
+    private int nBloques;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
-
+        this.setFocusable(true);
         this.estadoR1 = false;
         this.estadoR2 = false;
 
+
         this.r1 = new Raqueta(urlR1, 0, 180, true);
         this.r2 = new Raqueta(urlR2, 990, 180, false);
-        v.add(r1);
-        v.add(r2);
-        v.addKeyListener(r1);
-        v.addKeyListener(r2);
+        this.add(r1);
+        this.add(r2);
+        this.addKeyListener(r1);
+        this.addKeyListener(r2);
 
         this.width = v.getWidth();
 
         this.p = new Pelota(487, 220);
-        add(p);
+        this.add(p);
 
         ImageIcon i = new ImageIcon(url);
         this.img = i.getImage();
-        setSize(v.getSize());
-        setLocation(0, 0);
-        setLayout(null);
-        setVisible(true);
+        this.setSize(v.getSize());
+        this.setLocation(0, 0);
+        this.setLayout(null);
+        this.setVisible(true);
 
         this.timer = new Timer(5, (ActionListener) this);
         this.timer.start();
         this.p.setDelay(this.timer.getDelay());
+    }
+    public void makeBloque(){
+    Bloque b = new Bloque();
+    this.add(b);
+    b.setVisible(false);
+    b.setVisible(true);
+    this.nBloques ++;
     }
 
     public void checkColision(boolean antR1, boolean antR2) {
@@ -125,7 +134,11 @@ public class Tablero extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        checkColision(this.estadoR1, this.estadoR2);
-        salida();
+        this.checkColision(this.estadoR1, this.estadoR2);
+        this.salida();
+        if (this.nBloques<8){
+            this.makeBloque();
+        }
+        
     }
 }
