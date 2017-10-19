@@ -77,9 +77,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
         
         if(this.p.getx() > 1000){
-            int hola = this.width - this.r2.getWidth() - this.p.getWidth();
-            this.p.setx(hola);
-            System.out.println(hola);
+            this.p.setx(this.width - this.r2.getWidth() - this.p.getWidth());
             this.p.sety(this.r2.getY() + (this.r2.getHeight()/2));
             this.p.setAngulox(1 + (int) (Math.random() * 10) % 3);
             this.p.setAnguloy(1 + (int) (Math.random() * 10) % 3);
