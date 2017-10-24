@@ -32,7 +32,6 @@ public class Tablero extends JPanel implements ActionListener {
         this.estadoR1 = false;
         this.estadoR2 = false;
 
-
         this.r1 = new Raqueta(urlR1, 0, 180, true);
         this.r2 = new Raqueta(urlR2, 990, 180, false);
         this.add(r1);
@@ -56,23 +55,23 @@ public class Tablero extends JPanel implements ActionListener {
         this.timer.start();
         this.p.setDelay(this.timer.getDelay());
     }
-    public void makeBloque(){
-    this.bloque.add(new Bloque());
-    for (Bloque b : this.bloque) {
-    this.add(b);
-    b.setVisible(false);
-    b.setVisible(true);
+
+    public void makeBloque() {
+        this.bloque.add(new Bloque());
+        for (Bloque b : this.bloque) {
+            this.add(b);
+            b.setVisible(false);
+            b.setVisible(true);
         }
-    this.nBloques ++;
+        this.nBloques++;
     }
 
     public void checkColision(boolean antR1, boolean antR2) {
         this.estadoR1 = this.r1.getR().intersects(this.p.getR());
         this.estadoR2 = this.r2.getR().intersects(this.p.getR());
-        
+
         if (this.estadoR1) {
             if (antR1) {
-                this.p.setAngulox(-this.p.getAngulox());
                 this.p.setAnguloy(-this.p.getAnguloy());
                 if (this.p.getDelay() > 2) {
                     this.p.setDelay(this.p.getDelay() - 2);
@@ -86,10 +85,9 @@ public class Tablero extends JPanel implements ActionListener {
                 }
             }
         }
-        
+
         if (this.estadoR2) {
             if (antR2) {
-                this.p.setAngulox(-this.p.getAngulox());
                 this.p.setAnguloy(-this.p.getAnguloy());
                 if (this.p.getDelay() > 2) {
                     this.p.setDelay(this.p.getDelay() - 2);
@@ -103,19 +101,14 @@ public class Tablero extends JPanel implements ActionListener {
                 }
             }
         }
-    for (Bloque b : this.bloque) {
-        if (this.p.intersectsL(b.getR())){
-            this.p.setAngulox(-this.p.getAngulox());
-            this.p.setAnguloy(-this.p.getAnguloy()); 
+        for (Bloque b : this.bloque) {
+            if (this.p.intersectsVertical(b.getR())) {
+                this.p.setAngulox(-this.p.getAngulox());
+            } else if (this.p.intersectsHorizontal(b.getR())) {
+                this.p.setAnguloy(-this.p.getAnguloy());
+            }
         }
-        else if (this.p.intersectsX(b.getR())){
-            this.p.setAnguloy(-this.p.getAnguloy());
-        }
-        else if (this.p.intersectsY(b.getR())){
-           this.p.setAnguloy(-this.p.getAnguloy());
-        }
-        }
-    }   
+    }
 
     public void salida() {
         if (this.p.getx() < 0) {
@@ -153,9 +146,8 @@ public class Tablero extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.checkColision(this.estadoR1, this.estadoR2);
         this.salida();
-        if (this.nBloques<4){
+        if (this.nBloques < 10) {
             this.makeBloque();
         }
-        
     }
 }
