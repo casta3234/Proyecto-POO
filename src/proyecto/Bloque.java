@@ -5,6 +5,7 @@
  */
 package proyecto;
 
+import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -19,6 +20,7 @@ private int y;
 private int ancho;
 private int largo;
 private int numero;
+private Rectangle r;
         
     public Bloque() {
         super();
@@ -31,7 +33,12 @@ private int numero;
         this.x = (int) (400 * Math.random() + 300) - this.ancho;
         this.y = (int) (Math.random() * 475 + 15) - this.largo;
         this.setLocation(this.x, this.y);
+        this.r= new Rectangle(this.x, this.y, this.ancho, this.largo);
         this.setVisible(true);
+    }
+
+    public Rectangle getR() {
+        return r;
     }
  
 }

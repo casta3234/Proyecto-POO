@@ -43,7 +43,74 @@ public class Pelota extends JLabel implements ActionListener {
         timer.start();
         
         this.contador = 0;
+    }    public boolean intersectsL(Rectangle r) {
+        int tw = this.r.width;
+        int th = this.r.height;
+        int rw = r.width;
+        int rh = r.height;
+        if (rw <= 0 || rh <= 0 || tw <= 0 || th <= 0) {
+            return false;
+        }
+        int tx = this.r.x;
+        int ty = this.r.y;
+        int rx = r.x;
+        int ry = r.y;
+        rw += rx;
+        rh += ry;
+        tw += tx;
+        th += ty;
+        //      intersect
+        return ((rw < rx|| rw > tx) &&
+                (rh < ry || rh > ty) &&
+                (tw < tx || tw > rx) &&
+                (th < ty || th > ry));
     }
+        public boolean intersectsX(Rectangle r) {
+        int tw = this.r.width;
+        int th = this.r.height;
+        int rw = r.width;
+        int rh = r.height;
+        if (rw <= 0 || rh <= 0 || tw <= 0 || th <= 0) {
+            return false;
+        }
+        int tx = this.r.x;
+        int ty = this.r.y;
+        int rx = r.x;
+        int ry = r.y;
+        rw += rx;
+        rh += ry;
+        tw += tx;
+        th += ty;
+        //      overflowx
+        return  ((rw < rx|| rw > tx) &&
+                ( rh > ty) &&
+                (tw < tx || tw > rx) &&
+                ( th > ry));
+    }
+    public boolean intersectsY(Rectangle r) {
+        int tw = this.r.width;
+        int th = this.r.height;
+        int rw = r.width;
+        int rh = r.height;
+        if (rw <= 0 || rh <= 0 || tw <= 0 || th <= 0) {
+            return false;
+        }
+        int tx = this.r.x;
+        int ty = this.r.y;
+        int rx = r.x;
+        int ry = r.y;
+        rw += rx;
+        rh += ry;
+        tw += tx;
+        th += ty;
+        //      overflow || intersect
+        return ((rw < rx ) &&
+                (rh < ry || rh > ty) &&
+                (tw < tx ) &&
+                (th < ty || th > ry));
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

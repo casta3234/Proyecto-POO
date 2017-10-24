@@ -7,6 +7,7 @@ package proyecto;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -22,10 +23,12 @@ public class Tablero extends JPanel implements ActionListener {
     private int width;
     private boolean estadoR1, estadoR2;
     private int nBloques;
+    private ArrayList<Bloque> bloque;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
         this.setFocusable(true);
+        this.bloque = new ArrayList<>();
         this.estadoR1 = false;
         this.estadoR2 = false;
 
@@ -54,10 +57,12 @@ public class Tablero extends JPanel implements ActionListener {
         this.p.setDelay(this.timer.getDelay());
     }
     public void makeBloque(){
-    Bloque b = new Bloque();
+    this.bloque.add(new Bloque());
+    for (Bloque b : this.bloque) {
     this.add(b);
     b.setVisible(false);
     b.setVisible(true);
+        }
     this.nBloques ++;
     }
 
@@ -98,6 +103,18 @@ public class Tablero extends JPanel implements ActionListener {
                 }
             }
         }
+    for (Bloque b : this.bloque) {
+        if (this.p.intersectsL(b.getR())){
+            this.p.setAngulox(-this.p.getAngulox());
+            this.p.setAnguloy(-this.p.getAnguloy()); 
+        }
+        else if (this.p.intersectsX(b.getR())){
+            this.p.setAnguloy(-this.p.getAnguloy());
+        }
+        else if (this.p.intersectsY(b.getR())){
+           this.p.setAnguloy(-this.p.getAnguloy());
+        }
+        }
     }   
 
     public void salida() {
@@ -136,7 +153,7 @@ public class Tablero extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.checkColision(this.estadoR1, this.estadoR2);
         this.salida();
-        if (this.nBloques<8){
+        if (this.nBloques<4){
             this.makeBloque();
         }
         
