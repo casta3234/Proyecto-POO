@@ -6,8 +6,7 @@
 package proyecto;
 
 import java.awt.Rectangle;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 /**
  *
@@ -39,6 +38,5 @@ private Rectangle r;
 
     public Rectangle getR() {
         return r;
-    }
- 
+    } 
 }

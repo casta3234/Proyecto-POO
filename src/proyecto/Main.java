@@ -24,5 +24,4 @@ public class Main {
         ventana.add(t);
         ventana.setVisible(true);
     }
-
 }
