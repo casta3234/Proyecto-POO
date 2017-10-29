@@ -21,19 +21,22 @@ private int largo;
 private int numero;
 private Rectangle r;
         
-    public Bloque() {
+    public Bloque(JPanel tablero) {
         super();
         this.numero=(int) (2 * Math.random() + 1);
-        ImageIcon img = new ImageIcon("imagenes/Bloques/bloque_"+ this.numero+".png");
-        this.setIcon(img);
-        this.setSize(img.getIconWidth(), img.getIconHeight());
+        ImageIcon img = new ImageIcon("imagenes/Bloques/bloque_"+ this.numero+".png");       
+        
         this.largo = img.getIconHeight();
         this.ancho = img.getIconWidth();
-        this.x = (int) (400 * Math.random() + 300) - this.ancho;
-        this.y = (int) (Math.random() * 475 + 15) - this.largo;
+        this.x = (int) ((400 - this.ancho) * Math.random() + 300);
+        this.y = (int) ((475 - this.largo) * Math.random() + 15);
+        
         this.setLocation(this.x, this.y);
-        this.r= new Rectangle(this.x, this.y, this.ancho, this.largo);
+        this.setIcon(img);
+        this.setSize(img.getIconWidth(), img.getIconHeight());
         this.setVisible(true);
+        
+        this.r = new Rectangle(this.x, this.y, this.ancho, this.largo);
     }
 
     public Rectangle getR() {

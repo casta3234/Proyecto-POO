@@ -54,7 +54,7 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public void makeBloque() {
-        this.bloque.add(new Bloque());
+        this.bloque.add(new Bloque(this));
         for (Bloque b : this.bloque) {
             this.add(b);
             b.setVisible(false);
