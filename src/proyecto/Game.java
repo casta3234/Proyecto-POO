@@ -12,13 +12,11 @@ import javax.swing.*;
  *
  * @author Estudiante
  */
-public class Game extends JLabel implements ActionListener{
+public class Game extends JLabel{
 
     private JFrame ventana;
-    private boolean cambio;
     private Menu m;
     private Tablero t;
-    private Timer timer;
 
     public Game() {
         this.ventana = new JFrame("Brick Game");
@@ -34,20 +32,8 @@ public class Game extends JLabel implements ActionListener{
         this.t = new Tablero(ventana, "imagenes/Tableros/tablero_1.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
         this.ventana.add(t);
         
-        this.addMouseListener(m);
+        //t.setVisible(true);
         
-        this.cambio = false;
-        this.timer = new Timer(5, (ActionListener) this);
-        this.timer.start();
         this.ventana.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (m.isClick()) {
-            this.m.setVisible(false);
-            this.t.setVisible(true);
-            this.timer.stop();
-        }
     }
 }

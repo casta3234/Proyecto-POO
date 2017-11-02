@@ -13,10 +13,9 @@ import javax.swing.*;
  *
  * @author Estudiante
  */
-public class Menu extends JPanel implements MouseListener{
+public class Menu extends JPanel implements MouseListener {
 
     private Image img;
-    private boolean click;
 
     public Menu(JFrame v, String url) {
         super();
@@ -27,8 +26,6 @@ public class Menu extends JPanel implements MouseListener{
         this.setLocation(0, 0);
         this.setLayout(null);
         this.setVisible(true);
-        
-        this.click = false;
     }
 
     @Override
@@ -38,30 +35,24 @@ public class Menu extends JPanel implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        this.click = true;
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        this.click = false;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
-    }
 
-    public boolean isClick() {
-        return click;
     }
 }
