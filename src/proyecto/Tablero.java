@@ -41,12 +41,11 @@ public class Tablero extends JPanel implements ActionListener {
         this.p = new Pelota(487, 220);
         this.add(p);
 
-        ImageIcon i = new ImageIcon(url);
-        this.img = i.getImage();
+        this.img = Toolkit.getDefaultToolkit().getImage(url);
         this.setSize(v.getSize());
         this.setLocation(0, 0);
         this.setLayout(null);
-        this.setVisible(true);
+        this.setVisible(false);
 
         this.timer = new Timer(5, (ActionListener) this);
         this.timer.start();
