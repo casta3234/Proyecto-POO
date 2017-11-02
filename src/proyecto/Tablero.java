@@ -103,21 +103,20 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void salida() {
         if (this.p.getx() < 0) {
-            this.p.setx(this.r1.getWidth());
-            this.p.sety(this.r1.getY() + (this.r1.getHeight() / 2) + 5);
-            this.p.setAngulox(-1 * (1 + (int) (Math.random() * 10) % 3));
-            this.p.setAnguloy(-1 * (1 + (int) (Math.random() * 10) % 3));
-            this.p.setDelay(10);
-            this.timer.setDelay(10);
-            this.p.changePelota();
-
-        }
-
-        if (this.p.getx() > 1010) {
             this.p.setx(this.width - this.r2.getWidth() - this.p.getWidth() - 10);
             this.p.sety(this.r2.getY() + (this.r2.getHeight() / 2) + 5);
             this.p.setAngulox(1 + (int) (Math.random() * 10) % 3);
             this.p.setAnguloy(1 + (int) (Math.random() * 10) % 3);
+            this.p.setDelay(10);
+            this.timer.setDelay(10);
+            this.p.changePelota();
+        }
+
+        if (this.p.getx() > 1010) {
+            this.p.setx(this.r1.getWidth());
+            this.p.sety(this.r1.getY() + (this.r1.getHeight() / 2) + 5);
+            this.p.setAngulox(-1 * (1 + (int) (Math.random() * 10) % 3));
+            this.p.setAnguloy(-1 * (1 + (int) (Math.random() * 10) % 3));
             this.p.setDelay(10);
             this.timer.setDelay(10);
             this.p.changePelota();
