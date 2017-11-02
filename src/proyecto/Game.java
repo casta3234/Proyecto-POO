@@ -26,13 +26,13 @@ public class Game extends JLabel{
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setResizable(false);
         
-        this.m = new Menu(ventana, "imagenes/Tableros/tablero_2.png");
-        this.ventana.add(m);
+//        this.m = new Menu(ventana, "imagenes/Tableros/tablero_2.png");
+//        this.ventana.add(m);
         
         this.t = new Tablero(ventana, "imagenes/Tableros/tablero_1.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
         this.ventana.add(t);
         
-        //t.setVisible(true);
+        t.setVisible(true);
         
         this.ventana.setVisible(true);
     }
