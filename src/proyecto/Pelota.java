@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 import java.awt.event.*;
 import javax.swing.*;
 
-/**
+/*
  *
  * @author sebastian
  */

@@ -20,8 +20,10 @@ public class Main {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
-        Tablero t = new Tablero(ventana, "imagenes/Tableros/tablero_1.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
-        ventana.add(t);
+        Menu m = new Menu(ventana, "imagenes/Tableros/tablero_2.png");
+        ventana.add(m);
+//        Tablero t = new Tablero(ventana, "imagenes/Tableros/tablero_1.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
+//       ventana.add(t);
         ventana.setVisible(true);
     }
 }
