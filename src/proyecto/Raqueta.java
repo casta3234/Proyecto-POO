@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener, ActionListener {
+public class Raqueta extends JLabel implements Runnable, KeyListener {
 
     private int x;
     private int y;
@@ -55,22 +55,15 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.setVisible(true);
 
         this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
-
-        this.timer = new Timer(5, (ActionListener) this);
-        this.timer.start();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         this.tecla = e.getExtendedKeyCode();
     }
-    
+
     public Rectangle getR() {
         return this.r;
-    }        
-
-    @Override
-    public void keyTyped(KeyEvent e) {
     }
 
     @Override
@@ -78,31 +71,26 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.tecla = 0;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.movimiento(this.tecla);
-    }
-
-    private void movimiento(int numtecla) {
+    public void movimiento() {
         if (this.lado == true) {
-            if (this.y > 9 && numtecla == 87) {
+            if (this.y > 9 && tecla == 87) {
                 this.y -= 3;
-               this.setLocation(this.x, this.y);
+                this.setLocation(this.x, this.y);
                 this.r.setLocation(this.x, this.y);
             }
-            if ((this.y < (490 - (40 + (this.largo * 20)))) && (numtecla == 83)) {
+            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == 83)) {
                 this.y += 3;
                 this.setLocation(this.x, this.y);
                 this.r.setLocation(this.x, this.y);
             }
         }
         if (this.lado == false) {
-            if (this.y > 9 && numtecla == 38) {
+            if (this.y > 9 && tecla == 38) {
                 this.y -= 3;
                 this.setLocation(this.x, this.y);
                 this.r.setLocation(this.x, this.y);
             }
-            if ((this.y < (490 - (40 + (this.largo * 20)))) && (numtecla == 40)) {
+            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == 40)) {
                 this.y += 3;
                 this.setLocation(this.x, this.y);
                 this.r.setLocation(this.x, this.y);
@@ -134,5 +122,15 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
             this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         }
-    }    
+    }
+
+    @Override
+    public void run() {
+        this.movimiento();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
 }
