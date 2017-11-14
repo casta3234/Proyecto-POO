@@ -31,16 +31,11 @@ public class Tablero extends JPanel implements ActionListener {
 
         this.r1 = new Raqueta(urlR1, 0, 180, true);
         this.r2 = new Raqueta(urlR2, 990, 180, false);
-        Thread thread1 = new Thread(this.r1);
-        Thread thread2 = new Thread(this.r2);
-
         
         this.add(r1);
         this.add(r2);
-        thread1.start();
-        thread2.start();
-//        this.addKeyListener(r1);
-//        this.addKeyListener(r2);
+        this.addKeyListener(r1);
+        this.addKeyListener(r2);
 
         this.width = v.getWidth();
 
