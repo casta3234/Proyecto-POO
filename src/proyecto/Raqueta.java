@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener, ActionListener {
+public class Raqueta extends JLabel implements KeyListener, ActionListener, Runnable {
 
     private int x;
     private int y;
@@ -80,7 +80,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.movimiento(this.tecla);
+        this.run();
     }
 
     private void movimiento(int numtecla) {
@@ -135,4 +135,9 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         }
     }    
+
+    @Override
+    public void run() {
+        this.movimiento(this.tecla);
+    }
 }
