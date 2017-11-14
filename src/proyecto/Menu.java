@@ -5,8 +5,6 @@
  */
 package proyecto;
 
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
