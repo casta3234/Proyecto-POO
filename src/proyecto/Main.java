@@ -23,5 +23,6 @@ public class Main {
 
         Tablero t = new Tablero(ventana, "imagenes/Tableros/tablero_1.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
         ventana.add(t);
+        ventana.setVisible(true);
     }
 }
