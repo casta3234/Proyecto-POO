@@ -37,6 +37,11 @@ public class Tablero extends JPanel implements ActionListener {
         this.addKeyListener(r1);
         this.addKeyListener(r2);
 
+        Thread tr1 = new Thread(r1);
+        Thread tr2 = new Thread(r2);
+        tr1.start();
+        tr2.start();
+
         this.width = v.getWidth();
 
         this.p = new Pelota(487, 220);
@@ -135,18 +140,11 @@ public class Tablero extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Thread tr1 = new Thread(r1);
-        r1.movimiento();
-        tr1.start();
-
-        Thread tr2 = new Thread(r2);
-        r2.movimiento();
-        tr2.start();
-
         this.checkColision();
         this.salida();
         if (this.nBloques < 10) {
             this.makeBloque();
         }
+
     }
 }
