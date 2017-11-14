@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener, ActionListener, Runnable {
+public class Raqueta extends JLabel implements KeyListener, Runnable, ActionListener {
 
     private int x;
     private int y;
