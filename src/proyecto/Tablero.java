@@ -60,13 +60,29 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public void makeBloque() {
-        this.bloque.add(new Bloque(this));
-        for (Bloque b : this.bloque) {
-            this.add(b);
-            b.setVisible(false);
-            b.setVisible(true);
+        Bloque newBloque = new Bloque(this);
+        boolean libre = true;
+        if (this.p.getR().intersects(newBloque.getR())) {
+            libre = false;
         }
-        this.nBloques++;
+        for (Bloque b : this.bloque) {
+            if (b.getR().intersects(newBloque.getR())) {
+                libre = false;
+            }
+        }
+        if (libre) {
+            this.bloque.add(newBloque);
+            for (Bloque b : this.bloque) {
+                this.add(b);
+                b.setVisible(false);
+                b.setVisible(true);
+            }
+
+            this.nBloques++;
+        } else {
+            newBloque = null;
+            System.gc();
+        }
     }
 
     public void checkColision() {
