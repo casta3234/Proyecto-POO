@@ -19,12 +19,15 @@ private int y;
 private int ancho;
 private int largo;
 private int numero;
+private int vida;
 private Rectangle r;
+private ImageIcon img;
         
     public Bloque(JPanel tablero) {
         super();
+        this.vida = 3;
         this.numero=(int) (2 * Math.random() + 1);
-        ImageIcon img = new ImageIcon("imagenes/Bloques/bloque_"+ this.numero+".png");       
+        this.img = new ImageIcon("imagenes/Bloques/bloque_"+ this.numero+".png");       
         
         this.largo = img.getIconHeight();
         this.ancho = img.getIconWidth();
@@ -41,5 +44,13 @@ private Rectangle r;
 
     public Rectangle getR() {
         return r;
-    } 
+    }
+    public void MenosVida(){
+        this.vida--;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+    
 }

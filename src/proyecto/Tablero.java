@@ -8,8 +8,6 @@ package proyecto;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -23,9 +21,7 @@ public class Tablero extends JPanel implements ActionListener {
     private Raqueta r1, r2;
     private Pelota p;
     private int width;
-    private int nBloques;
     private ArrayList<Bloque> bloque;
-    private Thread Tr1, Tr2;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
@@ -39,14 +35,6 @@ public class Tablero extends JPanel implements ActionListener {
         this.add(r2);
         this.addKeyListener(r1);
         this.addKeyListener(r2);
-        
-        Runnable R1 = r1;
-        Runnable R2 = r2;
-        
-        this.Tr1 = new Thread(R1);
-        this.Tr1.start();
-        this.Tr2 = new Thread(R2);
-        this.Tr2.start();
 
         this.width = v.getWidth();
 
@@ -84,7 +72,6 @@ public class Tablero extends JPanel implements ActionListener {
                 b.setVisible(true);
             }
 
-            this.nBloques++;
         } else {
             newBloque = null;
             System.gc();
@@ -123,10 +110,26 @@ public class Tablero extends JPanel implements ActionListener {
         for (Bloque b : this.bloque) {
             if (this.p.intersectsVertical(b.getR())) {
                 this.p.setAngulox(-this.p.getAngulox());
+                b.MenosVida();
             } else if (this.p.intersectsHorizontal(b.getR())) {
                 this.p.setAnguloy(-this.p.getAnguloy());
+                b.MenosVida();
             }
         }
+    }
+
+    public void BorrarBloques() {
+        int i = 0;
+        Bloque b1 = null;
+        for (Bloque b : this.bloque) {
+
+            if (b.getVida() < 1) {
+                b.setVisible(false);
+                b1 = b;
+            }
+        }
+        this.bloque.remove(b1);
+        System.gc();
     }
 
     public void salida() {
@@ -163,10 +166,10 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.checkColision();
+        this.BorrarBloques();
         this.salida();
-        if (this.nBloques < 10) {
+        if (this.bloque.size() < 10) {
             this.makeBloque();
-
         }
         new Thread(r1).start();
         new Thread(r2).start();
