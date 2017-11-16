@@ -39,8 +39,6 @@ public class Tablero extends JPanel implements ActionListener {
         this.addKeyListener(r1);
         this.addKeyListener(r2);
 
-        
-
         this.width = v.getWidth();
 
         this.p = new Pelota(487, 220);
