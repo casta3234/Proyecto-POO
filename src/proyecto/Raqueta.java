@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener, Runnable {
+public class Raqueta extends JLabel implements KeyListener, Runnable, ActionListener {
 
     private int x;
     private int y;
@@ -26,6 +26,7 @@ public class Raqueta extends JLabel implements KeyListener, Runnable {
     private ImageIcon inicio;
     private ImageIcon medio;
     private ImageIcon fin;
+    private boolean permitido;
 
     public Raqueta(String url, int x, int y, boolean l) {
         super();
@@ -56,8 +57,9 @@ public class Raqueta extends JLabel implements KeyListener, Runnable {
 
         this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
 
-//        this.timer = new Timer(5, (ActionListener) this);
-//        this.timer.start();
+        this.timer = new Timer(5, (ActionListener) this);
+        this.timer.start();
+        this.permitido = true;
     }
 
     @Override
@@ -129,11 +131,19 @@ public class Raqueta extends JLabel implements KeyListener, Runnable {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        this.permitido = !this.permitido;
     }
 
     @Override
     public void run() {
+        if(this.permitido) {
+            movimiento();
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
         movimiento();
     }
 }
