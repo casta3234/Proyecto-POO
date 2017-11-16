@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener, Runnable, ActionListener {
+public class Raqueta extends JLabel implements KeyListener, Runnable {
 
     private int x;
     private int y;
@@ -26,7 +26,6 @@ public class Raqueta extends JLabel implements KeyListener, Runnable, ActionList
     private ImageIcon inicio;
     private ImageIcon medio;
     private ImageIcon fin;
-    private boolean permitido;
 
     public Raqueta(String url, int x, int y, boolean l) {
         super();
@@ -57,26 +56,12 @@ public class Raqueta extends JLabel implements KeyListener, Runnable, ActionList
 
         this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
 
-        this.timer = new Timer(5, (ActionListener) this);
-        this.timer.start();
-        this.permitido = true;
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        this.tecla = e.getExtendedKeyCode();
-    }
-
-    public Rectangle getR() {
-        return this.r;
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        this.tecla = 0;
+//        this.timer = new Timer(5, (ActionListener) this);
+//        this.timer.start();
     }
 
     public void movimiento() {
+        System.out.println("move");
         if (this.lado == true) {
             if (this.y > 9 && tecla == 87) {
                 this.y -= 3;
@@ -103,10 +88,6 @@ public class Raqueta extends JLabel implements KeyListener, Runnable, ActionList
         }
     }
 
-    public void setDelay(int newTimer) {
-        this.timer.setDelay(newTimer);
-    }
-
     public void changeLargo(int aumento) {
         if ((this.largo + aumento >= 0) && (this.largo + aumento < 8)) {
             this.largo += aumento;
@@ -128,22 +109,29 @@ public class Raqueta extends JLabel implements KeyListener, Runnable, ActionList
             this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         }
     }
+    
+
+    public Rectangle getR() {
+        return this.r;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        this.permitido = !this.permitido;
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        this.tecla = e.getExtendedKeyCode();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        this.tecla = 0;
     }
 
     @Override
     public void run() {
-        if(this.permitido) {
-            movimiento();
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
         movimiento();
     }
 }

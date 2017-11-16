@@ -25,6 +25,7 @@ public class Tablero extends JPanel implements ActionListener {
     private int width;
     private int nBloques;
     private ArrayList<Bloque> bloque;
+    private Thread Tr1, Tr2;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
@@ -38,6 +39,14 @@ public class Tablero extends JPanel implements ActionListener {
         this.add(r2);
         this.addKeyListener(r1);
         this.addKeyListener(r2);
+        
+        Runnable R1 = r1;
+        Runnable R2 = r2;
+        
+        this.Tr1 = new Thread(R1);
+        this.Tr1.start();
+        this.Tr2 = new Thread(R2);
+        this.Tr2.start();
 
         this.width = v.getWidth();
 
@@ -153,22 +162,13 @@ public class Tablero extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            Thread tr1 = new Thread(r1);
-            Thread tr2 = new Thread(r2);
-            tr1.start();
-            tr2.start();
-            tr1.join();
-            tr2.join();
-            
-            this.checkColision();
-            this.salida();
-            if (this.nBloques < 10) {
-                this.makeBloque();
-            }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.checkColision();
+        this.salida();
+        if (this.nBloques < 10) {
+            this.makeBloque();
 
+        }
+        new Thread(r1).start();
+        new Thread(r2).start();
     }
 }
