@@ -171,4 +171,12 @@ public class Tablero extends JPanel implements ActionListener {
     public Timer getTimer() {
         return timer;
     }
+
+    public Raqueta getR1() {
+        return r1;
+    }
+
+    public Raqueta getR2() {
+        return r2;
+    }
 }

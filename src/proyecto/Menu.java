@@ -23,7 +23,7 @@ public class Menu extends JPanel implements MouseListener {
         super();
         this.setFocusable(true);
 
-        this.img = new ImageIcon(url).getImage();
+        this.img = new ImageIcon(url + "tablero_2.png").getImage();
         this.click = false;
 
         this.setSize(v.getSize());
@@ -31,7 +31,7 @@ public class Menu extends JPanel implements MouseListener {
         this.setLayout(null);
         this.setVisible(false);
 
-        ImageIcon i = new ImageIcon("imagenes/Menu/carga.png");
+        ImageIcon i = new ImageIcon(url + "carga.png");
         boton = new JLabel(i);
         boton.setSize(i.getIconWidth(), i.getIconHeight());
         boton.setLocation(500 - (84 / 2), 250 - (141 / 2));

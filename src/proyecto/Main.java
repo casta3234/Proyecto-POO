@@ -12,7 +12,7 @@ package proyecto;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game("Brick Game", "imagenes/Tableros/", "imagenes/Tableros/", "imagenes/");
+        Game game = new Game("Brick Game", "imagenes/Tableros/", "imagenes/Menu/", "imagenes/");
         game.setVisible(true);
     }
 }

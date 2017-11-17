@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author Cristian Chitiva
  * @email cychitivav@unal.edu.co
  */
-public class Game extends JFrame implements ActionListener {
+public class Game extends JFrame {
 
     private Menu m;
     private Tablero t;
@@ -30,26 +30,12 @@ public class Game extends JFrame implements ActionListener {
         this.t = new Tablero(this, urlTableros + "tablero_1.png", urlRaquetas + "Raqueta1", urlRaquetas + "Raqueta2");
         this.add(t);
 
-        this.m = new Menu(this, urlMenu + "tablero_2.png");
+        this.m = new Menu(this, urlMenu);
         this.add(m);
-        this.m.setVisible(true);
+        this.t.setVisible(true);
 
         this.setVisible(false);
 
         this.addMouseListener(m);
-        this.timer = new Timer(5, (ActionListener) this);
-        this.timer.start();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //if (this.m.isClick()) {
-            this.m.setVisible(false);
-            //this.m = null;
-            this.t.setVisible(true);
-            System.gc();
-            //this.t.getTimer().start();
-            this.timer.stop();
-        //}
     }
 }
