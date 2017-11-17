@@ -5,8 +5,6 @@
  */
 package proyecto;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author sebastian
@@ -14,7 +12,7 @@ import javax.swing.JFrame;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game("Brick Game");
+        Game game = new Game("Brick Game", "imagenes/Tableros/", "imagenes/Tableros/", "imagenes/");
         game.setVisible(true);
     }
 }

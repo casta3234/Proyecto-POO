@@ -19,7 +19,7 @@ public class Game extends JFrame implements ActionListener {
     private Tablero t;
     private Timer timer;
 
-    public Game(String nombre) {
+    public Game(String nombre, String urlTableros, String urlMenu, String urlRaquetas) {
         this.setTitle(nombre);
         this.setSize(1005, 530);
         this.setLayout(null);
@@ -27,11 +27,12 @@ public class Game extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
-        this.t = new Tablero(this, "imagenes/Tableros/tablero_1.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
+        this.t = new Tablero(this, urlTableros + "tablero_1.png", urlRaquetas + "Raqueta1", urlRaquetas + "Raqueta2");
         this.add(t);
 
-        this.m = new Menu(this, "imagenes/Tableros/tablero_2.png");
+        this.m = new Menu(this, urlMenu + "tablero_2.png");
         this.add(m);
+        this.m.setVisible(true);
 
         this.setVisible(false);
 
@@ -42,9 +43,11 @@ public class Game extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //if (this.m.isC()) {
+        //if (this.m.isClick()) {
             this.m.setVisible(false);
+            //this.m = null;
             this.t.setVisible(true);
+            System.gc();
             //this.t.getTimer().start();
             this.timer.stop();
         //}

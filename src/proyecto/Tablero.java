@@ -115,7 +115,6 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public void BorrarBloques() {
-        int i = 0;
         Bloque b1 = null;
         for (Bloque b : this.bloque) {
 
