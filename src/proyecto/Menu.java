@@ -17,17 +17,26 @@ public class Menu extends JPanel implements MouseListener {
 
     private Image img;
     private boolean click;
+    private JLabel boton;
 
     public Menu(JFrame v, String url) {
         super();
         this.setFocusable(true);
 
-        this.setSize(v.getSize());
-        this.setLocation(0, 0);
-        this.setLayout(null);
-        this.setVisible(true);
-
+        this.img = new ImageIcon(url).getImage();
         this.click = false;
+
+        this.setSize(v.getSize());
+        this.setLocation(0,0);
+        this.setLayout(null);
+        this.setVisible(false);
+
+        ImageIcon i = new ImageIcon("imagenes/Menu/carga.png");
+        boton = new JLabel(i);
+        boton.setSize(i.getIconWidth(), i.getIconHeight());
+        boton.setLocation(500 - (84 / 2), 250 - (141 / 2));
+        boton.setVisible(true);
+        this.add(boton);
     }
 
     @Override
@@ -37,7 +46,12 @@ public class Menu extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        this.click = true;
+        int x = e.getX();
+        int y = e.getY();
+        if ((boton.getX() < x) && (boton.getX() + boton.getWidth() > x)
+                && (boton.getY() < y) && (boton.getY() + boton.getHeight() > y)) {
+            this.click = true;
+        }
     }
 
     @Override
@@ -47,7 +61,7 @@ public class Menu extends JPanel implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        this.click = false;
+
     }
 
     @Override
@@ -60,7 +74,7 @@ public class Menu extends JPanel implements MouseListener {
 
     }
 
-    public boolean isClick() {
+    public boolean isC() {
         return click;
     }
 }

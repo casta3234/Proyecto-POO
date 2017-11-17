@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package proyecto;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/**
+ * @author Cristian Chitiva
+ * @email cychitivav@unal.edu.co
+ */
+public class Game extends JFrame implements ActionListener {
+
+    private Menu m;
+    private Tablero t;
+    private Timer timer;
+
+    public Game(String nombre) {
+        this.setTitle(nombre);
+        this.setSize(1005, 530);
+        this.setLayout(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+
+        this.t = new Tablero(this, "imagenes/Tableros/tablero_1.png", "imagenes/Raqueta1", "imagenes/Raqueta2");
+        this.add(t);
+
+        this.m = new Menu(this, "imagenes/Tableros/tablero_2.png");
+        this.add(m);
+
+        this.setVisible(false);
+
+        this.addMouseListener(m);
+        this.timer = new Timer(5, (ActionListener) this);
+        this.timer.start();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (this.m.isC()) {
+            this.m.setVisible(false);
+            this.t.setVisible(true);
+        }
+    }
+}
