@@ -29,7 +29,7 @@ public class Menu extends JPanel implements MouseListener {
         this.setSize(v.getSize());
         this.setLocation(0,0);
         this.setLayout(null);
-        this.setVisible(false);
+        this.setVisible(true);
 
         ImageIcon i = new ImageIcon("imagenes/Menu/carga.png");
         boton = new JLabel(i);

@@ -42,9 +42,11 @@ public class Game extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.m.isC()) {
+        //if (this.m.isC()) {
             this.m.setVisible(false);
             this.t.setVisible(true);
-        }
+            //this.t.getTimer().start();
+            this.timer.stop();
+        //}
     }
 }
