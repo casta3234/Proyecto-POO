@@ -7,13 +7,15 @@ package proyecto;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
  *
  * @author sebastian
  */
-public class Raqueta extends JLabel implements KeyListener, Runnable {
+public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     private int x;
     private int y;
@@ -56,12 +58,11 @@ public class Raqueta extends JLabel implements KeyListener, Runnable {
 
         this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
 
-//        this.timer = new Timer(5, (ActionListener) this);
-//        this.timer.start();
+        this.timer = new Timer(5, (ActionListener) this);
+        this.timer.start();
     }
 
     public void movimiento() {
-        System.out.println("move");
         if (this.lado == true) {
             if (this.y > 9 && tecla == 87) {
                 this.y -= 3;
@@ -109,7 +110,6 @@ public class Raqueta extends JLabel implements KeyListener, Runnable {
             this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         }
     }
-    
 
     public Rectangle getR() {
         return this.r;
@@ -117,7 +117,7 @@ public class Raqueta extends JLabel implements KeyListener, Runnable {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
@@ -131,7 +131,7 @@ public class Raqueta extends JLabel implements KeyListener, Runnable {
     }
 
     @Override
-    public void run() {
+    public void actionPerformed(ActionEvent e) {
         movimiento();
     }
 }

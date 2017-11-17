@@ -171,7 +171,5 @@ public class Tablero extends JPanel implements ActionListener {
         if (this.bloque.size() < 10) {
             this.makeBloque();
         }
-        new Thread(r1).start();
-        new Thread(r2).start();
     }
 }

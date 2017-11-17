@@ -25,7 +25,7 @@ private ImageIcon img;
         
     public Bloque(JPanel tablero) {
         super();
-        this.vida = 3;
+        this.vida = 1;
         this.numero=(int) (2 * Math.random() + 1);
         this.img = new ImageIcon("imagenes/Bloques/bloque_"+ this.numero+".png");       
         
