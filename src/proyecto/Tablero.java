@@ -21,12 +21,12 @@ public class Tablero extends JPanel implements ActionListener {
     private Raqueta r1, r2;
     private Pelota p;
     private int width;
-    private ArrayList<Bloque> bloque;
+    private ArrayList<Bloque> bloques;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
         this.setFocusable(true);
-        this.bloque = new ArrayList<>();
+        this.bloques = new ArrayList<>();
 
         this.r1 = new Raqueta(urlR1, 0, 180, true);
         this.r2 = new Raqueta(urlR2, 990, 180, false);
@@ -48,7 +48,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.setLayout(null);
         this.setVisible(false);
 
-        this.timer = new Timer(5, (ActionListener) this);
+        this.timer = new Timer(2, (ActionListener) this);
         this.timer.start();
         this.timer.addActionListener(p);
     }
@@ -59,14 +59,14 @@ public class Tablero extends JPanel implements ActionListener {
         if (this.p.getR().intersects(newBloque.getR())) {
             libre = false;
         }
-        for (Bloque b : this.bloque) {
+        for (Bloque b : this.bloques) {
             if (b.getR().intersects(newBloque.getR())) {
                 libre = false;
             }
         }
         if (libre) {
-            this.bloque.add(newBloque);
-            for (Bloque b : this.bloque) {
+            this.bloques.add(newBloque);
+            for (Bloque b : this.bloques) {
                 this.add(b);
                 b.setVisible(false);
                 b.setVisible(true);
@@ -103,7 +103,7 @@ public class Tablero extends JPanel implements ActionListener {
             }
         }
 
-        for (Bloque b : this.bloque) {
+        for (Bloque b : this.bloques) {
             if (this.p.intersectsVertical(b.getR())) {
                 this.p.setAngulox(-this.p.getAngulox());
                 b.MenosVida();
@@ -116,14 +116,14 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void BorrarBloques() {
         Bloque b1 = null;
-        for (Bloque b : this.bloque) {
+        for (Bloque b : this.bloques) {
 
             if (b.getVida() < 1) {
                 b.setVisible(false);
                 b1 = b;
             }
         }
-        this.bloque.remove(b1);
+        this.bloques.remove(b1);
         System.gc();
     }
 
@@ -163,7 +163,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.checkColision();
         this.BorrarBloques();
         this.salida();
-        if (this.bloque.size() < 10) {
+        if (this.bloques.size() < 10) {
             this.makeBloque();
         }
     }

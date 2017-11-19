@@ -5,8 +5,6 @@
  */
 package proyecto;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -17,7 +15,6 @@ public class Game extends JFrame {
 
     private Menu m;
     private Tablero t;
-    private Timer timer;
 
     public Game(String nombre, String urlTableros, String urlMenu, String urlRaquetas) {
         this.setTitle(nombre);
@@ -29,6 +26,7 @@ public class Game extends JFrame {
 
         this.t = new Tablero(this, urlTableros + "tablero_1.png", urlRaquetas + "Raqueta1", urlRaquetas + "Raqueta2");
         this.add(t);
+        t.setVisible(false);
 
         this.m = new Menu(this, urlMenu);
         this.add(m);
