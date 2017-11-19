@@ -75,13 +75,13 @@ public class Pelota extends JLabel implements ActionListener {
             return false;
         }
         int tx = this.r.x;
-        int ty = this.r.y - 2;
+        int ty = this.r.y;
         int rx = r.x;
-        int ry = r.y - 2;
+        int ry = r.y;
         rw += rx;
-        rh += ry + 2;
+        rh += ry;
         tw += tx;
-        th += ty + 2;
+        th += ty;
         
         if((tw >= rx) && (rw >= tx)) {
             return ((rh >= ty) && (th >= ry));
