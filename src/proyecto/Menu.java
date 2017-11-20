@@ -32,7 +32,6 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         super();
         this.setFocusable(true);
         this.url = url;
-
         this.img = new ImageIcon(url + "tablero_2.png").getImage();
         this.reloj = new ImageIcon(url + "carga.png").getImage();
         this.angulo = 0.0;
@@ -120,7 +119,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             } else {
                 this.timer.stop();
             }
-        } else if (this.click == 2) {
+        } else if (this.click == 2 || this.click == 3) {
             this.botonOff.setVisible(false);
             this.botonOn.setVisible(false);
             this.repaint();
@@ -130,7 +129,6 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
                 this.add(t);
                 t.setVisible(true);
                 System.out.println(t.getText());
-                e.getActionCommand();
             }
 //            this.rotate = true;
 //            if (this.angulo > -200) {

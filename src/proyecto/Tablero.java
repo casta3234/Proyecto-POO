@@ -20,32 +20,18 @@ public class Tablero extends JPanel implements ActionListener {
     private Image img;
     private Raqueta r1, r2;
     private Pelota p;
-    private int width;
+    private final int width;
     private ArrayList<Bloque> bloques;
+    private final String url;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
-        this.setFocusable(true);
-        this.bloques = new ArrayList<>();
+        this.url = url;
+        this.width = v.getWidth();
 
         this.r1 = new Raqueta(urlR1, 0, 180, 1);
         this.r2 = new Raqueta(urlR2, 990, 180, 2);
-
-        this.width = v.getWidth();
-
-        this.p = new Pelota(487, 220);
-        this.add(p);
-
-        ImageIcon i = new ImageIcon(url);
-        this.img = i.getImage();
-        this.setSize(v.getSize());
-        this.setLocation(0, 0);
-        this.setLayout(null);
-        this.setVisible(false);
-
-        this.timer = new Timer(2, (ActionListener) this);
-        this.timer.stop();
-        this.timer.addActionListener(p);
+        this.iniciar(v);
     }
 
     public void makeBloque() {
@@ -163,14 +149,30 @@ public class Tablero extends JPanel implements ActionListener {
         }
     }
 
-    public void startTimer() {
+    public final void iniciar(JFrame v) {
+        this.setFocusable(true);
+        this.bloques = new ArrayList<>();
+
         this.add(r1);
         this.add(r2);
         this.addKeyListener(r1);
         this.addKeyListener(r2);
+
+        this.p = new Pelota(487, 220);
+        this.add(p);
+
+        ImageIcon i = new ImageIcon(url);
+        this.img = i.getImage();
+        this.setSize(v.getSize());
+        this.setLocation(0, 0);
+        this.setLayout(null);
+        this.setVisible(false);
+
+        this.timer = new Timer(2, (ActionListener) this);
+        this.timer.start();
+        this.timer.addActionListener(p);
         this.r1.getTimer().start();
         this.r2.getTimer().start();
-        this.timer.start();
     }
 
     public Raqueta getR1() {

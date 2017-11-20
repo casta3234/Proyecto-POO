@@ -23,8 +23,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private int y;
     private int lado = 0;
     private Rectangle r;
-    private int tecla;
-    private final Set<Integer> pressed = new HashSet<>();
+    private Set<Integer> teclas;
     private final int w = 87, s = 83, up = 38, down = 40;
     private Timer timer;
     private int largo;
@@ -38,21 +37,21 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     public Raqueta(String url, int x, int y, int l) {
         super();
+        this.teclas = new HashSet<>();
         this.lado = l;
         this.x = x;
         this.y = y;
         this.largo = 3;
-        this.tecla = 0;
         this.url = url;
         this.iniciar();
     }
 
-    public Raqueta(int host, String ip, int puerto, String url, int x, int y) {
+    public Raqueta(String url, int x, int y, int host, String ip, int puerto) {
         super();
+        this.teclas = new HashSet<>();
         this.x = x;
         this.y = y;
         this.largo = 3;
-        this.tecla = 0;
         this.url = url;
         this.iniciar();
         this.host = host;
@@ -75,20 +74,20 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     public void movimiento() {
         if (this.lado == 1 || this.host == 1) {
-            if (this.y > 9 && this.pressed.contains(this.w)) {
+            if (this.y > 9 && this.teclas.contains(this.w)) {
                 this.y -= 3;
             }
-            if ((this.y < (490 - (40 + (this.largo * 20))) && this.pressed.contains(this.s))) {
+            if ((this.y < (490 - (40 + (this.largo * 20))) && this.teclas.contains(this.s))) {
                 this.y += 3;
             }
             this.setLocation(this.x, this.y);
             this.r.setLocation(this.x, this.y);
         }
         if (this.lado == 2 || this.host == 2) {
-            if (this.y > 9 && this.pressed.contains(this.up)) {
+            if (this.y > 9 && this.teclas.contains(this.up)) {
                 this.y -= 3;
             }
-            if ((this.y < (490 - (40 + (this.largo * 20))) && this.pressed.contains(this.down))) {
+            if ((this.y < (490 - (40 + (this.largo * 20))) && this.teclas.contains(this.down))) {
                 this.y += 3;
             }
             this.setLocation(this.x, this.y);
@@ -133,12 +132,12 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        this.pressed.add(e.getExtendedKeyCode());
+        this.teclas.add(e.getExtendedKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        this.pressed.remove(e.getExtendedKeyCode());
+        this.teclas.remove(e.getExtendedKeyCode());
     }
 
     @Override
