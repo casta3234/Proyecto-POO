@@ -31,11 +31,8 @@ public class Tablero extends JPanel implements ActionListener {
         this.r1 = new Raqueta(urlR1, 0, 180, true);
         this.r2 = new Raqueta(urlR2, 990, 180, false);
 
-        this.add(r1);
-        this.add(r2);
-        this.addKeyListener(r1);
-        this.addKeyListener(r2);
-
+//        this.add(r1);
+//        this.add(r2);
         this.width = v.getWidth();
 
         this.p = new Pelota(487, 220);
@@ -159,7 +156,7 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {  
+    public void actionPerformed(ActionEvent e) {
         this.checkColision();
         this.BorrarBloques();
         this.salida();
@@ -168,7 +165,9 @@ public class Tablero extends JPanel implements ActionListener {
         }
     }
 
-    public void startTimer() {  
+    public void startTimer() {
+        this.add(r1);
+        this.add(r2);
         this.addKeyListener(r1);
         this.addKeyListener(r2);
         this.r1.getTimer().start();
