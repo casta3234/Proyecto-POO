@@ -34,6 +34,21 @@ public class Tablero extends JPanel implements ActionListener {
         this.iniciar(v);
     }
 
+    public Tablero(JFrame v, String url, String urlR1, String urlR2, boolean host, String ip, int puerto) {
+        super();
+        this.url = url;
+        this.width = v.getWidth();
+
+        if (host) {
+            this.r1 = new Raqueta(urlR1, 0, 180, 1, ip, puerto);
+            this.r2 = new Raqueta(urlR2, 990, 180, 2, ip, puerto);
+        } else {
+            this.r1 = new Raqueta(urlR1, 0, 180, 2, ip, puerto);
+            this.r2 = new Raqueta(urlR2, 990, 180, 1, ip, puerto);
+        }
+        this.iniciar(v);
+    }
+
     public void makeBloque() {
         Bloque newBloque = new Bloque(this);
         boolean libre = true;
