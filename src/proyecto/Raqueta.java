@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.*;
 
 /**
@@ -22,6 +24,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private int lado = 0;
     private Rectangle r;
     private int tecla;
+    private final Set<Integer> pressed = new HashSet<>();
     private final int w = 87, s = 83, up = 38, down = 40;
     private Timer timer;
     private int largo;
@@ -72,20 +75,20 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     public void movimiento() {
         if (this.lado == 1 || this.host == 1) {
-            if (this.y > 9 && tecla == this.w) {
+            if (this.y > 9 && this.pressed.contains(this.w)) {
                 this.y -= 3;
             }
-            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == this.s)) {
+            if ((this.y < (490 - (40 + (this.largo * 20))) && this.pressed.contains(this.s))) {
                 this.y += 3;
             }
             this.setLocation(this.x, this.y);
             this.r.setLocation(this.x, this.y);
         }
         if (this.lado == 2 || this.host == 2) {
-            if (this.y > 9 && tecla == this.up) {
+            if (this.y > 9 && this.pressed.contains(this.up)) {
                 this.y -= 3;
             }
-            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == this.down)) {
+            if ((this.y < (490 - (40 + (this.largo * 20))) && this.pressed.contains(this.down))) {
                 this.y += 3;
             }
             this.setLocation(this.x, this.y);
@@ -130,12 +133,12 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        this.tecla = e.getExtendedKeyCode();
+        this.pressed.add(e.getExtendedKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        this.tecla = 0;
+        this.pressed.remove(e.getExtendedKeyCode());
     }
 
     @Override
