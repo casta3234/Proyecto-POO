@@ -42,7 +42,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.iniciar();
     }
 
-    public Raqueta(String url, int x, int y, boolean l, boolean host, String ip, int puerto) {
+    public Raqueta(boolean host, String ip, int puerto, String url, int x, int y, boolean l) {
         super();
         this.lado = l;
         this.x = x;
@@ -57,13 +57,13 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
                 this.server = new ServerSocket(puerto);
                 this.socket = this.server.accept();
             } catch (IOException e) {
-                System.out.println("Servidor no creado");
+                System.out.println("Servidor no creado " + e.getMessage());
             }
         } else {
             try {
                 this.socket = new Socket(ip, puerto);
             } catch (IOException e) {
-                System.out.println("Socket no creado");
+                System.out.println("Socket no creado " + e.getMessage());
             }
         }
     }
