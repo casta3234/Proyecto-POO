@@ -19,9 +19,10 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     private int x;
     private int y;
-    private boolean lado;
+    private int lado = 0;
     private Rectangle r;
     private int tecla;
+    private final int w = 87, s = 83, up = 38, down = 40;
     private Timer timer;
     private int largo;
     private String url;
@@ -29,9 +30,10 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private ImageIcon medio;
     private ImageIcon fin;
     private ServerSocket server;
-    private Socket socket;
+    private java.net.Socket socket;
+    private int host = 0;
 
-    public Raqueta(String url, int x, int y, boolean l) {
+    public Raqueta(String url, int x, int y, int l) {
         super();
         this.lado = l;
         this.x = x;
@@ -42,26 +44,26 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.iniciar();
     }
 
-    public Raqueta(boolean host, String ip, int puerto, String url, int x, int y, boolean l) {
+    public Raqueta(int host, String ip, int puerto, String url, int x, int y) {
         super();
-        this.lado = l;
         this.x = x;
         this.y = y;
         this.largo = 3;
         this.tecla = 0;
         this.url = url;
         this.iniciar();
+        this.host = host;
 
-        if (host) {
+        if (this.host == 1) {
             try {
                 this.server = new ServerSocket(puerto);
                 this.socket = this.server.accept();
             } catch (IOException e) {
                 System.out.println("Servidor no creado " + e.getMessage());
             }
-        } else {
+        } else if (this.host == 2) {
             try {
-                this.socket = new Socket(ip, puerto);
+                this.socket = new java.net.Socket(ip, puerto);
             } catch (IOException e) {
                 System.out.println("Socket no creado " + e.getMessage());
             }
@@ -69,29 +71,25 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     }
 
     public void movimiento() {
-        if (this.lado == true) {
-            if (this.y > 9 && tecla == 87) {
+        if (this.lado == 1 || this.host == 1) {
+            if (this.y > 9 && tecla == this.w) {
                 this.y -= 3;
-                this.setLocation(this.x, this.y);
-                this.r.setLocation(this.x, this.y);
             }
-            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == 83)) {
+            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == this.s)) {
                 this.y += 3;
-                this.setLocation(this.x, this.y);
-                this.r.setLocation(this.x, this.y);
             }
+            this.setLocation(this.x, this.y);
+            this.r.setLocation(this.x, this.y);
         }
-        if (this.lado == false) {
-            if (this.y > 9 && tecla == 38) {
+        if (this.lado == 2 || this.host == 2) {
+            if (this.y > 9 && tecla == this.up) {
                 this.y -= 3;
-                this.setLocation(this.x, this.y);
-                this.r.setLocation(this.x, this.y);
             }
-            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == 40)) {
+            if ((this.y < (490 - (40 + (this.largo * 20)))) && (tecla == this.down)) {
                 this.y += 3;
-                this.setLocation(this.x, this.y);
-                this.r.setLocation(this.x, this.y);
             }
+            this.setLocation(this.x, this.y);
+            this.r.setLocation(this.x, this.y);
         }
     }
 

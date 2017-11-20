@@ -28,8 +28,8 @@ public class Tablero extends JPanel implements ActionListener {
         this.setFocusable(true);
         this.bloques = new ArrayList<>();
 
-        this.r1 = new Raqueta(urlR1, 0, 180, true);
-        this.r2 = new Raqueta(urlR2, 990, 180, false);
+        this.r1 = new Raqueta(urlR1, 0, 180, 1);
+        this.r2 = new Raqueta(urlR2, 990, 180, 2);
 
         this.width = v.getWidth();
 
