@@ -31,8 +31,6 @@ public class Tablero extends JPanel implements ActionListener {
         this.r1 = new Raqueta(urlR1, 0, 180, true);
         this.r2 = new Raqueta(urlR2, 990, 180, false);
 
-//        this.add(r1);
-//        this.add(r2);
         this.width = v.getWidth();
 
         this.p = new Pelota(487, 220);

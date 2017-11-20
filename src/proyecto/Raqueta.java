@@ -7,6 +7,8 @@ package proyecto;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.net.*;
 import javax.swing.*;
 
 /**
@@ -26,6 +28,8 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private ImageIcon inicio;
     private ImageIcon medio;
     private ImageIcon fin;
+    private ServerSocket server;
+    private Socket socket;
 
     public Raqueta(String url, int x, int y, boolean l) {
         super();
@@ -35,29 +39,33 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.largo = 3;
         this.tecla = 0;
         this.url = url;
+        this.iniciar();
+    }
 
-        this.setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
+    public Raqueta(String url, int x, int y, boolean l, boolean host, String ip, int puerto) {
+        super();
+        this.lado = l;
+        this.x = x;
+        this.y = y;
+        this.largo = 3;
+        this.tecla = 0;
+        this.url = url;
+        this.iniciar();
 
-        this.inicio = new ImageIcon(this.url + "/raquetaInicio.png");
-
-        this.add(new JLabel(this.inicio), 0);
-
-        for (int i = 0; i < largo; i++) {
-            this.medio = new ImageIcon(this.url + "/raquetaMedio.png");
-            this.add(new JLabel(this.medio), i + 1);
+        if (host) {
+            try {
+                this.server = new ServerSocket(puerto);
+                this.socket = this.server.accept();
+            } catch (IOException e) {
+                System.out.println("Servidor no creado");
+            }
+        } else {
+            try {
+                this.socket = new Socket(ip, puerto);
+            } catch (IOException e) {
+                System.out.println("Socket no creado");
+            }
         }
-
-        this.fin = new ImageIcon(this.url + "/raquetaFin.png");
-        this.add(new JLabel(this.fin), this.largo + 1);
-
-        this.setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
-        this.setLocation(this.x, this.y);
-        this.setVisible(false);
-
-        this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
-
-        this.timer = new Timer(5, (ActionListener) this);
-        this.timer.stop();
     }
 
     public void movimiento() {
@@ -135,5 +143,30 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         movimiento();
+    }
+
+    private void iniciar() {
+        this.setLayout(new BoxLayout((this), BoxLayout.Y_AXIS));
+
+        this.inicio = new ImageIcon(this.url + "/raquetaInicio.png");
+
+        this.add(new JLabel(this.inicio), 0);
+
+        for (int i = 0; i < largo; i++) {
+            this.medio = new ImageIcon(this.url + "/raquetaMedio.png");
+            this.add(new JLabel(this.medio), i + 1);
+        }
+
+        this.fin = new ImageIcon(this.url + "/raquetaFin.png");
+        this.add(new JLabel(this.fin), this.largo + 1);
+
+        this.setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
+        this.setLocation(this.x, this.y);
+        this.setVisible(false);
+
+        this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
+
+        this.timer = new Timer(5, (ActionListener) this);
+        this.timer.stop();
     }
 }
