@@ -7,6 +7,8 @@ package proyecto;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -15,23 +17,27 @@ import javax.swing.*;
  */
 public class Menu extends JPanel implements MouseListener, ActionListener {
 
-    private Image imgMenu;
-    private Image imgCarga;
+    private Image img;
     private Image reloj;
     private JLabel botonOff, botonOn;
     private Timer timer;
     private double angulo;
     private int click;
+    private boolean rotate;
+    private String ip;
+    private int puerto;
+    private String url;
 
     public Menu(JFrame v, String url) {
         super();
         this.setFocusable(true);
+        this.url = url;
 
-        this.imgMenu = new ImageIcon(url + "tablero_2.png").getImage();
-        this.imgCarga = new ImageIcon(url + "letras.png").getImage();
+        this.img = new ImageIcon(url + "tablero_2.png").getImage();
         this.reloj = new ImageIcon(url + "carga.png").getImage();
         this.angulo = 0.0;
         this.click = 0;
+        this.rotate = false;
 
         this.setSize(v.getSize());
         this.setLocation(0, 0);
@@ -52,23 +58,21 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         botonOn.setVisible(true);
         this.add(botonOn);
 
-        this.timer = new Timer(200, this);
+        this.timer = new Timer(250, this);
         this.timer.start();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        if (this.click == 1) {
+        if (this.rotate) {
             botonOff.setVisible(false);
             botonOn.setVisible(false);
             Graphics2D g2d = (Graphics2D) g;
-            g.drawImage(this.imgCarga, 0, 0, null);
+            g.drawImage(this.img, 0, 0, null);
             g2d.rotate(this.angulo, 500, 250);
             g2d.drawImage(this.reloj, 500 - (84 / 2), 250 - (141 / 2), null);
-        } else if (this.click == 2) {
-            
         } else {
-            g.drawImage(this.imgMenu, 0, 0, null);
+            g.drawImage(this.img, 0, 0, null);
         }
     }
 
@@ -81,6 +85,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             this.click = 1;
         } else if ((botonOn.getX() < x) && (botonOn.getX() + botonOn.getWidth() > x)
                 && (botonOn.getY() < y) && (botonOn.getY() + botonOn.getHeight() > y)) {
+            this.click = 2;
         }
     }
 
@@ -106,13 +111,33 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.click != 0) {
+        if (this.click == 1) {
+            this.rotate = true;
+            this.img = new ImageIcon(this.url + "letras.png").getImage();
             this.repaint();
             if (this.angulo > -200) {
                 this.angulo -= 15;
             } else {
                 this.timer.stop();
             }
+        } else if (this.click == 2) {
+            this.botonOff.setVisible(false);
+            this.botonOn.setVisible(false);
+            this.repaint();
+            if (!this.rotate) {
+                JTextField t = new JTextField(16);
+                t.setBounds(100, 100, 500, 20);
+                this.add(t);
+                t.setVisible(true);
+                System.out.println(t.getText());
+                e.getActionCommand();
+            }
+//            this.rotate = true;
+//            if (this.angulo > -200) {
+//                this.angulo -= 15;
+//            } else {
+//                this.timer.stop();
+//            }
         }
     }
 
