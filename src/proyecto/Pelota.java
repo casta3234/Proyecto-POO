@@ -21,6 +21,7 @@ public class Pelota extends JLabel implements ActionListener {
     private int angulox;
     private Rectangle r;
     private int contador;
+    private int width, height;
 
     public Pelota(int x, int y) {
         super();
@@ -36,7 +37,9 @@ public class Pelota extends JLabel implements ActionListener {
         this.setLocation(this.x, this.y);
         this.setVisible(true);
 
-        this.r = new Rectangle(this.x, this.y, img.getIconWidth(), img.getIconHeight());
+        this.width = img.getIconWidth();
+        this.height = img.getIconHeight();
+        this.r = new Rectangle(this.x, this.y, this.width, this.height);
 
         this.contador = 0;
     }
@@ -58,9 +61,9 @@ public class Pelota extends JLabel implements ActionListener {
         rh += ry;
         tw += tx;
         th += ty;
-        
-        if((th >= ry) && (rh >= ty)) {
-            return ((rw >= tx) && (tw >= rx));
+
+        if ((ty > ry && ty < rh) || (th > ry && th < rh)) {
+            return ((tw > rx && tw < rw) || (tx > rx && tx < rw));
         }
 
         return false;
@@ -75,26 +78,26 @@ public class Pelota extends JLabel implements ActionListener {
             return false;
         }
         int tx = this.r.x;
-        int ty = this.r.y;
+        int ty = this.r.y - 2;
         int rx = r.x;
-        int ry = r.y;
+        int ry = r.y - 2;
         rw += rx;
-        rh += ry;
+        rh += ry + 2;
         tw += tx;
-        th += ty;
-        
-        if((tw >= rx) && (rw >= tx)) {
-            return ((rh >= ty) && (th >= ry));
+        th += ty + 2;
+
+        if ((tw > rx && tw < rw) || (tx > rx && tx < rw)) {
+            return ((ty > ry && ty < rh) || (th > ry && th < rh));
         }
-        
-        return false;        
+
+        return false;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         this.x -= this.angulox;
         this.y -= this.anguloy;
-        r.setBounds(this.x, this.y, 25, 25);
+        this.r = new Rectangle(this.x, this.y, this.width, this.height);
         this.setLocation(this.x, this.y);
         if (y < 15 || y > 460) {
             this.anguloy = -this.anguloy;

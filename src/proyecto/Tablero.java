@@ -49,7 +49,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.setVisible(false);
 
         this.timer = new Timer(2, (ActionListener) this);
-        this.timer.start();
+        this.timer.stop();
         this.timer.addActionListener(p);
     }
 
@@ -159,7 +159,7 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {  
         this.checkColision();
         this.BorrarBloques();
         this.salida();
@@ -168,8 +168,12 @@ public class Tablero extends JPanel implements ActionListener {
         }
     }
 
-    public Timer getTimer() {
-        return timer;
+    public void startTimer() {  
+        this.addKeyListener(r1);
+        this.addKeyListener(r2);
+        this.r1.getTimer().start();
+        this.r2.getTimer().start();
+        this.timer.start();
     }
 
     public Raqueta getR1() {

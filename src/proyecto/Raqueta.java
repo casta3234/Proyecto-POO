@@ -52,12 +52,12 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
         this.setSize(inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
         this.setLocation(this.x, this.y);
-        this.setVisible(true);
+        this.setVisible(false);
 
         this.r = new Rectangle(this.x, this.y, inicio.getIconWidth(), inicio.getIconHeight() * (this.largo + 2));
 
         this.timer = new Timer(5, (ActionListener) this);
-        this.timer.start();
+        this.timer.stop();
     }
 
     public void movimiento() {
@@ -111,6 +111,10 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     public Rectangle getR() {
         return this.r;
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
 
     @Override

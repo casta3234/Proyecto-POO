@@ -7,7 +7,6 @@ package proyecto;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.ImageObserver;
 import javax.swing.*;
 
 /**
@@ -19,10 +18,10 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
     private Image imgMenu;
     private Image imgCarga;
     private Image reloj;
-    private boolean click;
-    private JLabel boton;
+    private JLabel botonOff, botonOn;
     private Timer timer;
     private double angulo;
+    private int click;
 
     public Menu(JFrame v, String url) {
         super();
@@ -31,20 +30,27 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         this.imgMenu = new ImageIcon(url + "tablero_2.png").getImage();
         this.imgCarga = new ImageIcon(url + "letras.png").getImage();
         this.reloj = new ImageIcon(url + "carga.png").getImage();
-        this.click = false;
         this.angulo = 0.0;
+        this.click = 0;
 
         this.setSize(v.getSize());
         this.setLocation(0, 0);
         this.setLayout(null);
         this.setVisible(false);
 
-        ImageIcon i = new ImageIcon(url + "carga.png");
-        boton = new JLabel(i);
-        boton.setSize(i.getIconWidth(), i.getIconHeight());
-        boton.setLocation(500 - (84 / 2), 250 - (141 / 2));
-        boton.setVisible(true);
-        this.add(boton);
+        ImageIcon iOff = new ImageIcon(url + "carga.png");
+        botonOff = new JLabel(iOff);
+        botonOff.setSize(iOff.getIconWidth(), iOff.getIconHeight());
+        botonOff.setLocation(500 - (84 / 2), 100 - (141 / 2));
+        botonOff.setVisible(true);
+        this.add(botonOff);
+
+        ImageIcon iOn = new ImageIcon(url + "carga.png");
+        botonOn = new JLabel(iOn);
+        botonOn.setSize(iOn.getIconWidth(), iOn.getIconHeight());
+        botonOn.setLocation(500 - (84 / 2), 300 - (141 / 2));
+        botonOn.setVisible(true);
+        this.add(botonOn);
 
         this.timer = new Timer(200, this);
         this.timer.start();
@@ -52,12 +58,15 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
 
     @Override
     protected void paintComponent(Graphics g) {
-        if (this.click) {
-            boton.setVisible(false);
-            g.drawImage(this.imgCarga, 0, 0, null);
+        if (this.click == 1) {
+            botonOff.setVisible(false);
+            botonOn.setVisible(false);
             Graphics2D g2d = (Graphics2D) g;
+            g.drawImage(this.imgCarga, 0, 0, null);
             g2d.rotate(this.angulo, 500, 250);
             g2d.drawImage(this.reloj, 500 - (84 / 2), 250 - (141 / 2), null);
+        } else if (this.click == 2) {
+            
         } else {
             g.drawImage(this.imgMenu, 0, 0, null);
         }
@@ -67,11 +76,11 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        if ((boton.getX() < x) && (boton.getX() + boton.getWidth() > x)
-                && (boton.getY() < y) && (boton.getY() + boton.getHeight() > y)) {
-            this.click = true;
-        } else {
-            this.click = false;
+        if ((botonOff.getX() < x) && (botonOff.getX() + botonOff.getWidth() > x)
+                && (botonOff.getY() < y) && (botonOff.getY() + botonOff.getHeight() > y)) {
+            this.click = 1;
+        } else if ((botonOn.getX() < x) && (botonOn.getX() + botonOn.getWidth() > x)
+                && (botonOn.getY() < y) && (botonOn.getY() + botonOn.getHeight() > y)) {
         }
     }
 
@@ -95,19 +104,23 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
 
     }
 
-    public boolean isClick() {
-        return click;
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.click) {
+        if (this.click != 0) {
             this.repaint();
-            if (this.angulo > -330) {
+            if (this.angulo > -200) {
                 this.angulo -= 15;
             } else {
                 this.timer.stop();
             }
         }
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public int getClick() {
+        return click;
     }
 }
