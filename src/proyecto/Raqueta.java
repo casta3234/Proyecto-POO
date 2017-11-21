@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import javax.swing.*;
 
@@ -35,6 +36,9 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private java.net.Socket socket;
     private int host = 0;
     private String ip;
+    private boolean conexion = false;
+    private Scanner in;
+    private PrintWriter out;
 
     public Raqueta(String url, int x, int y, int l) {
         super();
@@ -61,6 +65,12 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             try {
                 this.server = new ServerSocket(puerto);
                 this.socket = this.server.accept();
+                if (this.socket.isConnected()) {
+                    this.conexion = true;
+                }
+                
+                this.out = new PrintWriter(socket.getOutputStream(), true);
+                
                 this.ip = this.socket.getInetAddress().toString().substring(1);
                 System.out.println(this.ip);
             } catch (IOException e) {
@@ -69,6 +79,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         } else if (this.host == 2) {
             try {
                 this.socket = new java.net.Socket(ip, puerto);
+                in = new Scanner(socket.getInputStream());
             } catch (IOException e) {
                 System.out.println("Socket no creado " + e.getMessage());
             }
@@ -145,6 +156,13 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (this.host == 1) {
+            out.println(this.x);
+            out.println(this.x);
+        } else if (this.host == 2) {
+            this.x = in.nextInt();
+            this.y = in.nextInt();
+        }
         movimiento();
     }
 
@@ -175,5 +193,9 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     public String getIp() {
         return ip;
+    }
+
+    public boolean isConexion() {
+        return conexion;
     }
 }

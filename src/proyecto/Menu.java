@@ -114,21 +114,18 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             this.rotate = true;
             this.img = new ImageIcon(this.url + "letras.png").getImage();
             this.repaint();
-            if (this.angulo > -200) {
+            if (this.angulo > -((int) (300 * Math.random()))) {
                 this.angulo -= 15;
             } else {
                 this.timer.stop();
             }
-        } else if (this.click == 2 || this.click == 3) {
+        } else if (this.click == 2) {
             this.botonOff.setVisible(false);
             this.botonOn.setVisible(false);
-            this.repaint();
+            this.img = new ImageIcon(this.url + "conexion.png").getImage();
             this.rotate = true;
-            if (this.angulo > -200) {
-                this.angulo -= 15;
-            } else {
-                this.timer.stop();
-            }
+            this.repaint();
+            this.timer.stop();
         }
     }
 

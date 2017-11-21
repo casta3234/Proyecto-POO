@@ -32,7 +32,7 @@ public class Game extends JFrame implements ActionListener {
 
         this.m = new Menu(this, urlMenu);
         this.add(m);
-        
+
         this.setVisible(false);
         this.addMouseListener(m);
 
@@ -41,7 +41,7 @@ public class Game extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {        
+    public void actionPerformed(ActionEvent e) {
         this.m.setVisible(true);
         if (!this.m.getTimer().isRunning()) {
             this.m.setVisible(false);
@@ -52,20 +52,23 @@ public class Game extends JFrame implements ActionListener {
                     this.addKeyListener(this.t.getR1());
                     this.addKeyListener(this.t.getR2());
                     this.t.setVisible(true);
+                    this.timer.stop();
+
                     break;
                 case 2:
-                    this.t = new Tablero(this, urlTableros + "tablero_1.png", urlRaquetas + "Raqueta1", urlRaquetas + "Raqueta2", true, "localhost", 8000);
+                    this.t = new Tablero(this, urlTableros + "tablero_1.png", urlRaquetas + "Raqueta1", urlRaquetas + "Raqueta2", true, "192.168.1.53", 8000);
                     this.add(t);
                     this.addKeyListener(this.t.getR1());
                     this.addKeyListener(this.t.getR2());
+                    this.m.setVisible(false);
                     this.t.setVisible(true);
+                    this.timer.stop();
                     break;
                 case 3:
                     break;
                 default:
                     break;
             }
-            this.timer.stop();
         }
     }
 }
