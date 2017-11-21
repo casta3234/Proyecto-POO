@@ -61,7 +61,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             try {
                 this.server = new ServerSocket(puerto);
                 this.socket = this.server.accept();
-                this.ip = this.socket.getInetAddress().toString();
+                this.ip = this.socket.getInetAddress().toString().substring(1);
                 System.out.println(this.ip);
             } catch (IOException e) {
                 System.out.println("Servidor no creado " + e.getMessage());
