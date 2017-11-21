@@ -123,19 +123,12 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             this.botonOff.setVisible(false);
             this.botonOn.setVisible(false);
             this.repaint();
-            if (!this.rotate) {
-                JTextField t = new JTextField(16);
-                t.setBounds(100, 100, 500, 20);
-                this.add(t);
-                t.setVisible(true);
-                System.out.println(t.getText());
+            this.rotate = true;
+            if (this.angulo > -200) {
+                this.angulo -= 15;
+            } else {
+                this.timer.stop();
             }
-//            this.rotate = true;
-//            if (this.angulo > -200) {
-//                this.angulo -= 15;
-//            } else {
-//                this.timer.stop();
-//            }
         }
     }
 
