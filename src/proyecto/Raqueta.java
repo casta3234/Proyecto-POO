@@ -12,8 +12,6 @@ import java.net.*;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -38,8 +36,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private java.net.Socket socket;
     private int host = 0;
     private String ip;
-    private boolean conexion = false;
-    private BufferedReader in;
+    private Scanner in;
     private PrintWriter out;
 
     public Raqueta(String url, int x, int y, int l) {
@@ -68,21 +65,16 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             try {
                 this.server = new ServerSocket(puerto);
                 this.socket = this.server.accept();
-                if (this.socket.isConnected()) {
-                    this.conexion = true;
-                }
-
                 this.out = new PrintWriter(socket.getOutputStream(), true);
-
+                
                 this.ip = this.socket.getInetAddress().toString().substring(1);
-                System.out.println(this.ip);
             } catch (IOException e) {
                 System.out.println("Servidor no creado " + e.getMessage());
             }
         } else if (this.host == 2) {
             try {
                 this.socket = new java.net.Socket(ip, 8001);
-                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                in = new Scanner(socket.getInputStream());
             } catch (IOException e) {
                 System.out.println("Socket no creado " + e.getMessage());
             }
@@ -162,13 +154,10 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             out.println(this.x);
             out.println(this.y);
         } else if (this.host == 2) {
-            try {
-                this.x = in.read();
-                this.y = in.read();
-                this.setLocation(this.x, this.y);
-                this.r.setLocation(this.x, this.y);
-            } catch (IOException ex) {
-            }
+            this.x = in.nextInt();
+            this.y = in.nextInt();
+            this.setLocation(this.x, this.y);
+            this.r.setLocation(this.x, this.y);
         }
         movimiento();
     }
@@ -200,9 +189,5 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     public String getIp() {
         return ip;
-    }
-
-    public boolean isConexion() {
-        return conexion;
     }
 }

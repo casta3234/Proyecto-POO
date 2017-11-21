@@ -41,10 +41,11 @@ public class Tablero extends JPanel implements ActionListener {
 
         if (host) {
             this.r1 = new Raqueta(urlR1, 0, 180, 1, ip, puerto);
-            this.r2 = new Raqueta(urlR2, 990, 180, 2, ip, puerto);
+            String ipSocket = this.r1.getIp();
+            this.r2 = new Raqueta(urlR2, 990, 180, 2, ipSocket, puerto + 1);
         } else {
             this.r1 = new Raqueta(urlR1, 0, 180, 2, ip, puerto);
-            this.r2 = new Raqueta(urlR2, 990, 180, 1, ip, puerto);
+            this.r2 = new Raqueta(urlR2, 990, 180, 1, ip, puerto + 1);
         }
         this.iniciar(v);
     }
