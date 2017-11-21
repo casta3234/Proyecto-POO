@@ -40,12 +40,12 @@ public class Tablero extends JPanel implements ActionListener {
         this.width = v.getWidth();
 
         if (host) {
-            this.r1 = new Raqueta(urlR1, 0, 180, 1, ip, puerto);
+            this.r1 = new Raqueta(urlR1, 0, 180, true, ip, puerto);
             String ipSocket = this.r1.getIp();
-            this.r2 = new Raqueta(urlR2, 990, 180, 2, ipSocket, puerto + 1);
+            this.r2 = new Raqueta(urlR2, 990, 180, false, ipSocket, puerto + 1);
         } else {
-            this.r1 = new Raqueta(urlR1, 0, 180, 2, ip, puerto);
-            this.r2 = new Raqueta(urlR2, 990, 180, 1, ip, puerto + 1);
+            this.r1 = new Raqueta(urlR1, 0, 180, false, ip, puerto);
+            this.r2 = new Raqueta(urlR2, 990, 180, true, ip, puerto + 1);
         }
         this.iniciar(v);
     }
@@ -159,10 +159,10 @@ public class Tablero extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.checkColision();
         this.salida();
-//        this.BorrarBloques();       
-//        if (this.bloques.size() < 10) {
-//            this.makeBloque();
-//        }
+        this.BorrarBloques();       
+        if (this.bloques.size() < 10) {
+            this.makeBloque();
+        }
     }
 
     public final void iniciar(JFrame v) {
