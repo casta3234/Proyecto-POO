@@ -44,7 +44,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.r2 = new Raqueta(urlR2, 990, 180, 2);
             //this.r2 = new Raqueta(urlR2, 990, 180, 2, ip, puerto);
         } else {
-            this.r1 = new Raqueta(urlR1, 0, 180, 1, ip, puerto);
+            this.r1 = new Raqueta(urlR1, 0, 180, 2, ip, puerto);
             this.r2 = new Raqueta(urlR2, 990, 180, 2);
             //this.r2 = new Raqueta(urlR2, 990, 180, 2, ip, puerto);
         }
@@ -159,11 +159,11 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.checkColision();
-        this.BorrarBloques();
         this.salida();
-        if (this.bloques.size() < 10) {
-            this.makeBloque();
-        }
+//        this.BorrarBloques();       
+//        if (this.bloques.size() < 10) {
+//            this.makeBloque();
+//        }
     }
 
     public final void iniciar(JFrame v) {

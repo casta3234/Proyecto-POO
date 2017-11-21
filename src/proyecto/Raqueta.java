@@ -158,10 +158,12 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (this.host == 1) {
             out.println(this.x);
-            out.println(this.x);
+            out.println(this.y);
         } else if (this.host == 2) {
             this.x = in.nextInt();
             this.y = in.nextInt();
+            this.setLocation(this.x, this.y);
+            this.r.setLocation(this.x, this.y);
         }
         movimiento();
     }
