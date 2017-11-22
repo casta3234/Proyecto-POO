@@ -32,7 +32,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         super();
         this.setFocusable(true);
         this.url = url;
-        this.img = new ImageIcon(url + "tablero_2.png").getImage();
+        this.img = new ImageIcon(url + "Fondo.png").getImage();
         this.reloj = new ImageIcon(url + "carga.png").getImage();
         this.angulo = 0.0;
         this.click = 0;
@@ -43,17 +43,17 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         this.setLayout(null);
         this.setVisible(false);
 
-        ImageIcon iOff = new ImageIcon(url + "carga.png");
+        ImageIcon iOff = new ImageIcon(url + "Cliente.png");
         botonOff = new JLabel(iOff);
         botonOff.setSize(iOff.getIconWidth(), iOff.getIconHeight());
-        botonOff.setLocation(500 - (84 / 2), 100 - (141 / 2));
+        botonOff.setLocation(500 - (256 / 2), 100 - (83 / 2));
         botonOff.setVisible(true);
         this.add(botonOff);
 
-        ImageIcon iOn = new ImageIcon(url + "carga.png");
+        ImageIcon iOn = new ImageIcon(url + "Servidor.png");
         botonOn = new JLabel(iOn);
         botonOn.setSize(iOn.getIconWidth(), iOn.getIconHeight());
-        botonOn.setLocation(500 - (84 / 2), 300 - (141 / 2));
+        botonOn.setLocation(500 - (310 / 2), 300 - (82 / 2));
         botonOn.setVisible(true);
         this.add(botonOn);
 
