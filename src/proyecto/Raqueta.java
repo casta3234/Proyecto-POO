@@ -37,7 +37,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
     private String ip;
     private Scanner in;
     private PrintWriter out;
-    private boolean host;
+    private int host;
 
     public Raqueta(String url, int x, int y, int l) {
         super();
@@ -47,10 +47,11 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.y = y;
         this.largo = 3;
         this.url = url;
+        this.host = 0;
         this.iniciar();
     }
 
-    public Raqueta(String url, int x, int y, boolean host, String ip, int puerto) {
+    public Raqueta(String url, int x, int y, int host, String ip, int puerto) {
         super();
         this.teclas = new HashSet<>();
         this.x = x;
@@ -61,7 +62,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
         this.lado = 0;
         this.host = host;
 
-        if (host) {
+        if (host == 1) {
             this.lado = 1;
             try {
                 this.server = new ServerSocket(puerto);
@@ -72,7 +73,7 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
             } catch (IOException e) {
                 System.out.println("Servidor no creado " + e.getMessage());
             }
-        } else {
+        } else if (this.host == 2) {
             this.lado = 2;
             try {
                 this.socket = new java.net.Socket(ip, puerto);
@@ -152,10 +153,10 @@ public class Raqueta extends JLabel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.host) {
+        if (this.host == 1) {
             out.println(this.x);
             out.println(this.y);
-        } else {
+        } else if (this.host == 2) {
             this.x = in.nextInt();
             this.y = in.nextInt();
             this.setLocation(this.x, this.y);

@@ -7,8 +7,6 @@ package proyecto;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -43,17 +41,17 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         this.setLayout(null);
         this.setVisible(false);
 
-        ImageIcon iOff = new ImageIcon(url + "Cliente.png");
+        ImageIcon iOff = new ImageIcon(url + "local.png");
         botonOff = new JLabel(iOff);
         botonOff.setSize(iOff.getIconWidth(), iOff.getIconHeight());
-        botonOff.setLocation(500 - (256 / 2), 100 - (83 / 2));
+        botonOff.setLocation(500 - (iOff.getIconWidth() / 2), 100 - (83 / 2));
         botonOff.setVisible(true);
         this.add(botonOff);
 
-        ImageIcon iOn = new ImageIcon(url + "Servidor.png");
+        ImageIcon iOn = new ImageIcon(url + "online.png");
         botonOn = new JLabel(iOn);
         botonOn.setSize(iOn.getIconWidth(), iOn.getIconHeight());
-        botonOn.setLocation(500 - (310 / 2), 300 - (82 / 2));
+        botonOn.setLocation(500 - (iOn.getIconWidth() / 2), 300 - (82 / 2));
         botonOn.setVisible(true);
         this.add(botonOn);
 
@@ -71,6 +69,8 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             g2d.rotate(this.angulo, 500, 250);
             g2d.drawImage(this.reloj, 500 - (84 / 2), 250 - (141 / 2), null);
         } else {
+            botonOff.setVisible(true);
+            botonOn.setVisible(true);
             g.drawImage(this.img, 0, 0, null);
         }
     }
@@ -120,8 +120,16 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
                 this.timer.stop();
             }
         } else if (this.click == 2) {
-            this.botonOff.setVisible(false);
-            this.botonOn.setVisible(false);
+            ImageIcon iOff = new ImageIcon(url + "Cliente.png");
+            botonOff.setIcon(iOff);
+            botonOff.setSize(iOff.getIconWidth(), iOff.getIconHeight());
+            botonOff.setLocation(500 - (iOff.getIconWidth() / 2), 100 - (83 / 2));
+
+            ImageIcon iOn = new ImageIcon(url + "Servidor.png");
+            botonOn.setIcon(iOn);
+            botonOn.setSize(iOn.getIconWidth(), iOn.getIconHeight());
+            botonOn.setLocation(500 - (iOn.getIconWidth() / 2), 300 - (82 / 2));
+            
             this.img = new ImageIcon(this.url + "conexion.png").getImage();
             this.rotate = true;
             this.repaint();
