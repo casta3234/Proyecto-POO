@@ -18,13 +18,13 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
     private Image img;
     private Image reloj;
     private JLabel botonOff, botonOn;
-    private Timer timer;
+    private final Timer timer;
     private double angulo;
     private int click;
     private boolean rotate;
     private String ip;
     private int puerto;
-    private String url;
+    private final String url;
 
     public Menu(JFrame v, String url) {
         super();
