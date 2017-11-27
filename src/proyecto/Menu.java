@@ -17,7 +17,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
 
     private Image img;
     private Image reloj;
-    private JLabel botonOff, botonOn;
+    private JLabel botonOff, botonOn, botonOpt;
     private final Timer timer;
     private double angulo;
     private int click;
@@ -54,6 +54,13 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         botonOn.setLocation(500 - (iOn.getIconWidth() / 2), 300 - (82 / 2));
         botonOn.setVisible(true);
         this.add(botonOn);
+        
+        ImageIcon opt = new ImageIcon(url + "gear.png");
+        botonOpt = new JLabel(opt);
+        botonOpt.setSize(opt.getIconWidth(), opt.getIconHeight());
+        botonOpt.setLocation(950 - (opt.getIconWidth() / 2), 450 - (81 / 2));
+        botonOpt.setVisible(true);
+        this.add(botonOpt);
 
         this.timer = new Timer(250, this);
         this.timer.start();
@@ -85,6 +92,9 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         } else if ((botonOn.getX() < x) && (botonOn.getX() + botonOn.getWidth() > x)
                 && (botonOn.getY() < y) && (botonOn.getY() + botonOn.getHeight() > y)) {
             this.click = 2;
+        } else if ((botonOpt.getX() < x) && (botonOpt.getX() + botonOpt.getWidth() > x)
+                && (botonOpt.getY() < y) && (botonOpt.getY() + botonOpt.getHeight() > y)) {
+            this.click = 3;
         }
     }
 
@@ -134,7 +144,9 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             this.rotate = true;
             this.repaint();
             this.timer.stop();
-        }
+        } //  else if(this.click == 3){
+//            ImageIcon menuOpt = 
+//      }
     }
 
     public Timer getTimer() {
