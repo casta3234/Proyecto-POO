@@ -146,8 +146,26 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             this.rotate = true;
             this.repaint();
             this.timer.stop();
-        }   else if(this.click == 3){
+        } else if(this.click == 3){
+            ImageIcon nombreUsuario = new ImageIcon(url + "");
+            botonOff.setIcon(nombreUsuario);
+            botonOff.setSize(nombreUsuario.getIconWidth(), nombreUsuario.getIconHeight());
+            botonOff.setLocation(500 - (nombreUsuario.getIconWidth() / 2), 100 - (83 / 2));
             
+            ImageIcon hScores = new ImageIcon(url + "leaderBoardsComplex.png");
+            botonOn.setIcon(hScores);
+            botonOn.setSize(hScores.getIconWidth(), hScores.getIconHeight());
+            botonOn.setLocation(500 - (hScores.getIconWidth() / 2), 300 - (82 / 2));
+            
+            ImageIcon regresar = new ImageIcon(url + "");
+            botonOpt.setIcon(regresar);
+            botonOpt.setSize(regresar.getIconWidth(), regresar.getIconHeight());
+            botonOpt.setLocation(950 - (regresar.getIconWidth() / 2), 450 - (81 / 2));
+            
+            this.img = new ImageIcon(this.url + "Fondo.png").getImage();
+            this.rotate = false;
+            this.repaint();
+            this.timer.stop();
      }
     }
 
