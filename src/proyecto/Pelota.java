@@ -141,10 +141,10 @@ public class Pelota extends JLabel implements ActionListener {
     }
 
     public void changePelota() {
-        if (this.contador < 3) {
+        if (this.contador < 8) {
             this.contador++;
         } else {
-            this.contador -= 2;
+            this.contador -= 7;
         }
         this.setIcon(new ImageIcon("imagenes/Pelotas/pelota_" + this.contador + ".png"));
     }

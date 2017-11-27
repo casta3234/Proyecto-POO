@@ -158,8 +158,8 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.checkColision();
+        this.BorrarBloques();
         this.salida();
-        this.BorrarBloques();       
         if (this.bloques.size() < 10) {
             this.makeBloque();
         }
@@ -177,7 +177,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.p = new Pelota(487, 220);
         this.add(p);
 
-        ImageIcon i = new ImageIcon(url);
+        ImageIcon i = new ImageIcon(url + "tablero_" + (int) (8 * Math.random()) + ".png");
         this.img = i.getImage();
         this.setSize(v.getSize());
         this.setLocation(0, 0);
