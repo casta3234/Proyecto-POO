@@ -146,9 +146,9 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             this.rotate = true;
             this.repaint();
             this.timer.stop();
-        } //  else if(this.click == 3){
-//            ImageIcon menuOpt = 
-//      }
+        }   else if(this.click == 3){
+            
+     }
     }
 
     public Timer getTimer() {
