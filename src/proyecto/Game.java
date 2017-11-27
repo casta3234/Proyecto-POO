@@ -58,14 +58,19 @@ public class Game extends JFrame implements ActionListener {
                     System.gc();
                     break;
                 case 2:
-                    this.t = new Tablero(this, urlTableros,
-                            urlRaquetas + "Raqueta1", urlRaquetas + "Raqueta2", false, "localhost", 8000);
+                    boolean provisional = true;
+                    this.t = new Tablero(this, urlTableros, urlRaquetas + "Raqueta1",
+                            urlRaquetas + "Raqueta2", provisional, "localhost", 8000);
                     this.add(t);
-                    this.addKeyListener(this.t.getR1());
-                    this.addKeyListener(this.t.getR2());
-                    this.m.setVisible(false);
+                    if (provisional) {
+                        this.addKeyListener(this.t.getR1());
+                    } else {
+                        this.addKeyListener(this.t.getR2());
+                    }
                     this.t.setVisible(true);
                     this.timer.stop();
+                    this.m = null;
+                    System.gc();
                     break;
                 case 3:
                     break;

@@ -115,7 +115,6 @@ public class Tablero extends JPanel implements ActionListener {
     public void BorrarBloques() {
         Bloque b1 = null;
         for (Bloque b : this.bloques) {
-
             if (b.getVida() < 1) {
                 b.setVisible(false);
                 b1 = b;
@@ -172,8 +171,6 @@ public class Tablero extends JPanel implements ActionListener {
         
         this.add(r1);
         this.add(r2);
-        this.addKeyListener(r1);
-        this.addKeyListener(r2);
 
         this.p = new Pelota(487, 220);
         this.add(p);
