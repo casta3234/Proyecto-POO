@@ -23,6 +23,7 @@ public class Tablero extends JPanel implements ActionListener {
     private final int width;
     private ArrayList<Bloque> bloques;
     private final String url;
+    private JProgressBar timeBar;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
@@ -168,7 +169,7 @@ public class Tablero extends JPanel implements ActionListener {
     public final void iniciar(JFrame v) {
         this.setFocusable(true);
         this.bloques = new ArrayList<>();
-
+        
         this.add(r1);
         this.add(r2);
         this.addKeyListener(r1);
@@ -189,6 +190,11 @@ public class Tablero extends JPanel implements ActionListener {
         this.timer.addActionListener(p);
         this.r1.getTimer().start();
         this.r2.getTimer().start();
+                
+        this.CountTimeBar();
+        this.add(timeBar);
+        this.timeBar.setVisible(true);
+        this.timeBar.setBounds(250, 10, 500, 10);
     }
 
     public Raqueta getR1() {
@@ -198,4 +204,24 @@ public class Tablero extends JPanel implements ActionListener {
     public Raqueta getR2() {
         return r2;
     }
+    
+    public void CountTimeBar() {
+        timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 10);
+        timeBar.setValue(10);
+        ActionListener listener = new ActionListener() {
+            int counter = 0;
+            public void actionPerformed(ActionEvent ae) {
+                counter++;
+                timeBar.setValue(counter);
+                if (counter>10) {
+                    JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!!");
+                    timer.stop();
+                } 
+            }
+        };
+        timer = new Timer(1000, listener);
+        timer.start();
+        
+    }
+    
 }
