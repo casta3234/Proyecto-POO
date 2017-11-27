@@ -60,7 +60,7 @@ public class Game extends JFrame implements ActionListener {
                 case 2:
                     boolean provisional = true;
                     this.t = new Tablero(this, urlTableros, urlRaquetas + "Raqueta1",
-                            urlRaquetas + "Raqueta2", provisional, "192.168.1.63", 8000);
+                            urlRaquetas + "Raqueta2", provisional, "localhost", 8000);
                     this.add(t);
                     if (provisional) {
                         this.addKeyListener(this.t.getR1());
