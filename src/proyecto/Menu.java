@@ -71,6 +71,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         if (this.rotate) {
             botonOff.setVisible(false);
             botonOn.setVisible(false);
+            botonOpt.setVisible(false);
             Graphics2D g2d = (Graphics2D) g;
             g.drawImage(this.img, 0, 0, null);
             g2d.rotate(this.angulo, 500, 250);
@@ -78,6 +79,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         } else {
             botonOff.setVisible(true);
             botonOn.setVisible(true);
+            botonOpt.setVisible(true);
             g.drawImage(this.img, 0, 0, null);
         }
     }
