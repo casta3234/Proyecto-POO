@@ -33,8 +33,8 @@ public class Tablero extends JPanel implements ActionListener {
         super();
         this.url = url;
         this.width = v.getWidth();
-        this.score1 = new JLabel("prueba");
-        this.score2 = new JLabel("prueba");
+        this.score1 = new JLabel("");
+        this.score2 = new JLabel("");
 
         this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 1);
         this.r2 = new Raqueta(urlR + "Raqueta2", 990, 180, 2);
