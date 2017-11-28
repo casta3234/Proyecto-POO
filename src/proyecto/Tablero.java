@@ -7,6 +7,10 @@ package proyecto;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -26,13 +30,10 @@ public class Tablero extends JPanel implements ActionListener {
     private JProgressBar timeBar;
     private int sc1 = 0;
     private int sc2 = 0;
-
     private JTextField score1;
     private JTextField score2;
-
-
     private int counter = 0;
-
+    private int puntajeMayor;
 
     public Tablero(JFrame v, String url, String urlR) {
         super();
@@ -60,7 +61,6 @@ public class Tablero extends JPanel implements ActionListener {
         super();
         this.url = url;
         this.width = v.getWidth();
-        
 
         if (host) {
             this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 1, ip, puerto);
@@ -101,16 +101,70 @@ public class Tablero extends JPanel implements ActionListener {
     public void checkColision() {
         if (this.p.intersectsVertical(this.r1.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-            this.p.setRaqueta(1); 
+            this.p.setRaqueta(1);
             if (this.timer.getDelay() > 2) {
                 this.timer.setDelay(this.timer.getDelay() - 2);
                 counter++;
                 this.timeBar.setValue(counter);
             }
-            if (this.counter > 75) {
+            if (this.counter > 5) {
                 counter++;
                 this.timeBar.setValue(counter);
                 JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!");
+                if (this.puntajeMayor < sc1) {
+                    if (sc1 < sc2) {
+                        try {
+                            File f = new File("text.txt");
+                            PrintStream write = new PrintStream(f);
+                            if (f.exists()) {
+                                write.println(this.sc2);
+                            } else {
+                                FileWriter file = new FileWriter(f);
+                                write.println(this.sc2);
+                            }
+                        } catch (IOException e) {
+                        }
+                    } else {
+                        try {
+                            File f = new File(url);
+                            PrintStream write = new PrintStream(f);
+                            if (f.exists()) {
+                                write.println(this.sc1);
+                            } else {
+                                FileWriter file = new FileWriter(f);
+                                write.println(this.sc1);
+                            }
+                        } catch (IOException e) {
+                        }
+                    }
+                }
+                if (this.puntajeMayor < sc2) {
+                    if (sc2 < sc1) {
+                        try {
+                            File f = new File("text.txt");
+                            PrintStream write = new PrintStream(f);
+                            if (f.exists()) {
+                                write.println(this.sc1);
+                            } else {
+                                FileWriter file = new FileWriter(f);
+                                write.println(this.sc1);
+                            }
+                        } catch (IOException e) {
+                        }
+                    } else {
+                        try {
+                            File f = new File(url);
+                            PrintStream write = new PrintStream(f);
+                            if (f.exists()) {
+                                write.println(this.sc2);
+                            } else {
+                                FileWriter file = new FileWriter(f);
+                                write.println(this.sc2);
+                            }
+                        } catch (IOException e) {
+                        }
+                    }
+                }
                 this.timer.stop();
                 this.r1.getTimer().stop();
                 this.r2.getTimer().stop();
@@ -138,7 +192,7 @@ public class Tablero extends JPanel implements ActionListener {
             }
         } else if (this.p.intersectsHorizontal(this.r2.getR())) {
             this.p.setAnguloy(-this.p.getAnguloy());
-            this.p.setRaqueta(2);            
+            this.p.setRaqueta(2);
         }
 
         for (Bloque b : this.bloque) {
@@ -171,11 +225,12 @@ public class Tablero extends JPanel implements ActionListener {
                     }
                 }
                 if (this.p.getRaqueta() == 1) {
-                       this.sc1++;
-                    }
+                    this.sc1++;
+                }
                 if (this.p.getRaqueta() == 2) {
-                        this.sc2++;
-                    }
+                    this.sc2++;
+                }
+
                 break;
             }
         }
@@ -214,14 +269,12 @@ public class Tablero extends JPanel implements ActionListener {
         this.r2.setVisible(true);
     }
 
-
     public void puntaje() {
-        
+
         this.score1.setText(String.valueOf(sc1));
-        
+
         this.score2.setText(String.valueOf(sc2));
     }
-
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -249,7 +302,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.p = new Pelota(487, 220);
         this.add(p);
 
-        ImageIcon i = new ImageIcon(url + "tablero_" + (int) (7 * Math.random() + 1) + ".png");
+        ImageIcon i = new ImageIcon(url + "tablero_" + (int) (6 * Math.random()) + ".png");
         this.img = i.getImage();
         this.setSize(v.getSize());
         this.setLocation(0, 0);
@@ -262,7 +315,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.r1.getTimer().start();
         this.r2.getTimer().start();
 
-        this.timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 75);
+        this.timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 5);
         this.add(timeBar);
         this.timeBar.setVisible(true);
         this.timeBar.setBounds(250, 10, 500, 10);
