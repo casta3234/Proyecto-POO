@@ -17,7 +17,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
 
     private Image img;
     private Image reloj;
-    private JLabel botonOff, botonOn, botonOpt, botonName, botonScores, botonBack;
+    private JLabel botonOff, botonOn, botonOpt, botonScores, botonBack;
     private final Timer timer;
     private double angulo;
     private int click;
@@ -64,14 +64,6 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         botonOpt.setVisible(true);
         this.add(botonOpt);
         
-        //Agregar icono de boton para cambio de nombre
-        ImageIcon nombreUsuario = new ImageIcon(url + "singleplayer.png");
-        botonName = new JLabel(nombreUsuario);
-        botonName.setSize(nombreUsuario.getIconWidth(), nombreUsuario.getIconHeight());
-        botonName.setLocation(850 - (nombreUsuario.getIconWidth() / 2), 450 - (83 / 2));
-        botonName.setVisible(true);
-        this.add(botonName);
-        
         ImageIcon hScores = new ImageIcon(url + "leaderboardsComplex.png");
         botonScores = new JLabel(hScores);
         botonScores.setSize(hScores.getIconWidth(), hScores.getIconHeight());
@@ -84,7 +76,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         botonBack = new JLabel(regresar);
         botonBack.setSize(regresar.getIconWidth(), regresar.getIconHeight());
         botonBack.setLocation(650 - (regresar.getIconWidth() / 2), 450 - (81 / 2));
-        botonBack.setVisible(true);
+        botonBack.setVisible(false);
         this.add(botonBack);
 
         this.timer = new Timer(250, this);
@@ -97,28 +89,16 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             botonOff.setVisible(false);
             botonOn.setVisible(false);
             botonOpt.setVisible(false);
-            botonName.setVisible(false);
             botonScores.setVisible(false);
-            botonBack.setVisible(false);
             Graphics2D g2d = (Graphics2D) g;
             g.drawImage(this.img, 0, 0, null);
             g2d.rotate(this.angulo, 500, 250);
             g2d.drawImage(this.reloj, 500 - (84 / 2), 250 - (141 / 2), null);
-        } else if(this.subM){
-            g.drawImage(this.img, 0, 0, null);
-            botonOff.setVisible(true);
-            botonOn.setVisible(true);
-            botonOpt.setVisible(true);
-            botonScores.setVisible(true);
-            botonName.setVisible(true);
-            botonBack.setVisible(true);
         } else {
             botonOff.setVisible(true);
             botonOn.setVisible(true);
             botonOpt.setVisible(true);
-            botonName.setVisible(false);
-            botonScores.setVisible(false);
-            botonBack.setVisible(false);
+            botonScores.setVisible(true);
             g.drawImage(this.img, 0, 0, null);
         }
     }
@@ -133,18 +113,6 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         } else if ((botonOn.isVisible()) && (botonOn.getX() < x) && (botonOn.getX() + botonOn.getWidth() > x)
                 && (botonOn.getY() < y) && (botonOn.getY() + botonOn.getHeight() > y)) {
             this.click = 2;
-        } else if ((botonOpt.isVisible()) && (botonOpt.getX() < x) && (botonOpt.getX() + botonOpt.getWidth() > x)
-                && (botonOpt.getY() < y) && (botonOpt.getY() + botonOpt.getHeight() > y)) {
-            this.click = 3;
-        } else if ((botonName.isVisible()) && (botonName.getX() < x) && (botonName.getX() + botonName.getWidth() > x)
-                && (botonName.getY() < y) && (botonName.getY() + botonName.getHeight() > y)) {
-            this.click = 4;
-        } else if ((botonScores.isVisible()) && (botonScores.getX() < x) && (botonScores.getX() + botonScores.getWidth() > x)
-                && (botonScores.getY() < y) && (botonScores.getY() + botonScores.getHeight() > y)) {
-            this.click = 5;
-        } else if ((botonBack.isVisible()) && (botonBack.getX() < x) && (botonBack.getX() + botonBack.getWidth() > x)
-                && (botonBack.getY() < y) && (botonBack.getY() + botonBack.getHeight() > y)) {
-            this.click = 6;
         }
     }
 
@@ -191,25 +159,15 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             botonOn.setSize(iOn.getIconWidth(), iOn.getIconHeight());
             botonOn.setLocation(500 - (iOn.getIconWidth() / 2), 300 - (82 / 2));
             
+            this.botonBack.setVisible(false);
+            
             this.img = new ImageIcon(this.url + "conexion.png").getImage();
             this.rotate = true;
             this.subM = false;
             this.repaint();
             this.timer.stop();
         } else if(this.click == 3){
-            this.img = new ImageIcon(this.url + "Fondo.png").getImage();
-            this.rotate = false;
-            this.subM = true;
-            this.repaint();
-        } else if(this. click == 4){
-            //Evento que ocurre al oprimir el botón de cambio de nombre
-        } else if(this. click == 5){
-            //Evento que ocurre al oprimir el botón de ver altos puntajes
-        } else if(this. click == 6){
-           this.rotate = false;
-           this.subM = false;
-           this.repaint();
-        }
+        } 
     }
 
     public Timer getTimer() {
