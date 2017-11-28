@@ -26,15 +26,25 @@ public class Tablero extends JPanel implements ActionListener {
     private JProgressBar timeBar;
     private int sc1 = 0;
     private int sc2 = 0;
-    private JLabel score1;
-    private JLabel score2;
-
+    private JTextField score1;
+    private JTextField score2;
+    
     public Tablero(JFrame v, String url, String urlR) {
         super();
         this.url = url;
         this.width = v.getWidth();
-        this.score1 = new JLabel("");
-        this.score2 = new JLabel("");
+        this.score1 = new JTextField("");
+        this.score1.setBounds(0, 10, 30, 20);
+        this.add(score1);
+        this.score1.setFont(new Font("Monospaced", Font.BOLD, 15));
+        this.score1.setText(String.valueOf(sc1));
+        this.score1.setVisible(true);
+        this.score2 = new JTextField("");
+        this.score2.setBounds(970, 10, 30, 20);
+        this.add(score2);
+        this.score2.setFont(new Font("Monospaced", Font.BOLD, 15));
+        this.score2.setText(String.valueOf(sc2));
+        this.score2.setVisible(true);
 
         this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 1);
         this.r2 = new Raqueta(urlR + "Raqueta2", 990, 180, 2);
@@ -45,8 +55,7 @@ public class Tablero extends JPanel implements ActionListener {
         super();
         this.url = url;
         this.width = v.getWidth();
-        this.score1 = new JLabel("prueba");
-        this.score2 = new JLabel("prueba2");
+        
 
         if (host) {
             this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 1, ip, puerto);
@@ -126,7 +135,6 @@ public class Tablero extends JPanel implements ActionListener {
         }
     }
 
-
     public void BorrarBloques() {
         int i = 0;
         Bloque b1 = null;
@@ -135,19 +143,25 @@ public class Tablero extends JPanel implements ActionListener {
             if (b.getVida() < 1) {
                 b.setVisible(false);
                 b1 = b;
-                if(b.getNumero()==2){
-                    if(this.p.getRaqueta()==1){
-                    this.r1.changeLargo(1);
+                if (b.getNumero() == 2) {
+                    if (this.p.getRaqueta() == 1) {
+                        this.r1.changeLargo(1);
+                    }
+                    if (this.p.getRaqueta() == 2) {
+                        this.r2.changeLargo(1);
+                    }
                 }
-                if(this.p.getRaqueta()==2){
-                    this.r2.changeLargo(1);
-                 }
-                }
+                if (this.p.getRaqueta() == 1) {
+                       this.sc1++;
+                    }
+                if (this.p.getRaqueta() == 2) {
+                        this.sc2++;
+                    }
                 break;
             }
         }
         this.bloque.remove(b1);
-       
+
     }
 
     public void salida() {
@@ -161,6 +175,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.changePelota();
             this.p.setRaqueta(2);
             this.r1.changeLargo(-1);
+            this.sc2++;
         }
 
         if (this.p.getx() > 1010) {
@@ -173,6 +188,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.p.changePelota();
             this.p.setRaqueta(1);
             this.r2.changeLargo(-1);
+            this.sc1++;
         }
         this.r1.setVisible(false);
         this.r1.setVisible(true);
@@ -181,26 +197,10 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public void puntaje() {
-        this.add(score2);
-        this.add(score1);
-        this.score1.setLocation(10, 10);
-        this.score2.setLocation(450, 10);
-        if (this.p.getx() < 0) {
-            this.sc2++;
-            //this.score2.setBounds(10, 10, 500, 10);
-
-            this.score2.setText(String.valueOf(sc2));
-        }
-
-        if (this.p.getx() > 1010) {
-            this.sc1++;
-
-            //this.score1.setText(String.valueOf(sc1));
-            this.score1.setBounds(990, 10, 20, 20);
-        }
-        this.score1.setVisible(true);
-        this.score2.setVisible(true);
-
+        System.out.println("p1:"+this.sc1);
+        this.score1.setText(String.valueOf(sc1));
+        System.out.println("p2:"+this.sc2);
+        this.score2.setText(String.valueOf(sc2));
     }
 
     @Override
@@ -258,8 +258,8 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public void CountTimeBar() {
-        timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 10);
-        timeBar.setValue(10);
+        timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
+        timeBar.setValue(100);
         ActionListener listener = new ActionListener() {
             int counter = 0;
 
@@ -267,7 +267,7 @@ public class Tablero extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent ae) {
                 counter++;
                 timeBar.setValue(counter);
-                if (counter > 10) {
+                if (counter > 100) {
                     JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!!");
                     timer.stop();
                 }
