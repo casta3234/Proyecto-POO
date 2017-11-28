@@ -167,7 +167,7 @@ public class Tablero extends JPanel implements ActionListener {
         if (this.p.getx() < 0) {
             this.sc2++;
             //this.score2.setBounds(10, 10, 500, 10);
-            
+
             this.score2.setText(String.valueOf(sc2));
         }
 
