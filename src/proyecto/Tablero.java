@@ -28,6 +28,7 @@ public class Tablero extends JPanel implements ActionListener {
     private int sc2 = 0;
     private JLabel score1;
     private JLabel score2;
+    private int counter = 0;
 
     public Tablero(JFrame v, String url, String urlR) {
         super();
@@ -87,29 +88,33 @@ public class Tablero extends JPanel implements ActionListener {
     public void checkColision() {
         if (this.p.intersectsVertical(this.r1.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-            this.p.setRaqueta(1);
-            if (this.timer.getDelay() > 2) {
-                this.timer.setDelay(this.timer.getDelay() - 2);
-            }
+            this.p.setRaqueta(1);            
         } else if (this.p.intersectsHorizontal(this.r1.getR())) {
             this.p.setAnguloy(-this.p.getAnguloy());
             this.p.setRaqueta(1);
             if (this.timer.getDelay() > 2) {
                 this.timer.setDelay(this.timer.getDelay() - 2);
+                counter++;
+                this.timeBar.setValue(counter);
+            } else {
+                JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!");
+                this.time.stop();
             }
         }
 
         if (this.p.intersectsVertical(this.r2.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
             this.p.setRaqueta(2);
-            if (this.timer.getDelay() > 2) {
-                this.timer.setDelay(this.timer.getDelay() - 2);
-            }
         } else if (this.p.intersectsHorizontal(this.r2.getR())) {
             this.p.setAnguloy(-this.p.getAnguloy());
             this.p.setRaqueta(2);
             if (this.timer.getDelay() > 2) {
                 this.timer.setDelay(this.timer.getDelay() - 2);
+                counter++;
+                this.timeBar.setValue(counter);
+            } else {
+                JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!");
+                this.time.stop();
             }
         }
 
@@ -146,8 +151,7 @@ public class Tablero extends JPanel implements ActionListener {
                 break;
             }
         }
-        this.bloque.remove(b1);
-       
+        this.bloque.remove(b1);       
     }
 
     public void salida() {
@@ -180,29 +184,6 @@ public class Tablero extends JPanel implements ActionListener {
         this.r2.setVisible(true);
     }
 
-    public void puntaje() {
-        this.add(score2);
-        this.add(score1);
-        this.score1.setLocation(10, 10);
-        this.score2.setLocation(450, 10);
-        if (this.p.getx() < 0) {
-            this.sc2++;
-            //this.score2.setBounds(10, 10, 500, 10);
-
-            this.score2.setText(String.valueOf(sc2));
-        }
-
-        if (this.p.getx() > 1010) {
-            this.sc1++;
-
-            //this.score1.setText(String.valueOf(sc1));
-            this.score1.setBounds(990, 10, 20, 20);
-        }
-        this.score1.setVisible(true);
-        this.score2.setVisible(true);
-
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(this.img, 0, 0, null);
@@ -216,7 +197,6 @@ public class Tablero extends JPanel implements ActionListener {
         if (this.bloque.size() < 10) {
             this.makeBloque();
         }
-        this.puntaje();
     }
 
     public final void iniciar(JFrame v) {
@@ -229,7 +209,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.p = new Pelota(487, 220);
         this.add(p);
 
-        ImageIcon i = new ImageIcon(url + "tablero_" + (int) (8 * Math.random()) + ".png");
+        ImageIcon i = new ImageIcon(url + "tablero_" + (int) (7 * Math.random() + 1) + ".png");
         this.img = i.getImage();
         this.setSize(v.getSize());
         this.setLocation(0, 0);
@@ -242,7 +222,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.r1.getTimer().start();
         this.r2.getTimer().start();
 
-        this.CountTimeBar();
+        this.timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 5);
         this.add(timeBar);
         this.timeBar.setVisible(true);
         this.timeBar.setBounds(250, 10, 500, 10);
@@ -256,25 +236,4 @@ public class Tablero extends JPanel implements ActionListener {
     public Raqueta getR2() {
         return r2;
     }
-
-    public void CountTimeBar() {
-        timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 10);
-        timeBar.setValue(10);
-        ActionListener listener = new ActionListener() {
-            int counter = 0;
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                counter++;
-                timeBar.setValue(counter);
-                if (counter > 10) {
-                    JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!!");
-                    timer.stop();
-                }
-            }
-        };
-        timer = new Timer(1000, listener);
-        timer.start();
-    }
-
 }
