@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.*;
 
 /**
@@ -293,6 +294,15 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public final void iniciar(JFrame v) {
+        File f = new File(url);
+        Scanner in;
+        if (f.exists()) {
+            try {
+                in = new Scanner(f);
+                this.puntajeMayor = in.nextInt();
+            } catch (IOException e) {
+            }
+        }
         this.setFocusable(true);
         this.bloque = new ArrayList<>();
 
