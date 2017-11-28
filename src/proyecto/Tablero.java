@@ -108,7 +108,7 @@ public class Tablero extends JPanel implements ActionListener {
                 counter++;
                 this.timeBar.setValue(counter);
             }
-            if (this.counter > 5) {
+            if (this.counter > 75) {
                 counter++;
                 this.timeBar.setValue(counter);
                 JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!");
@@ -312,7 +312,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.p = new Pelota(487, 220);
         this.add(p);
 
-        ImageIcon i = new ImageIcon(url + "tablero_" + (int) (6 * Math.random()) + ".png");
+        ImageIcon i = new ImageIcon(url + "tablero_3.png");
         this.img = i.getImage();
         this.setSize(v.getSize());
         this.setLocation(0, 0);
@@ -325,7 +325,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.r1.getTimer().start();
         this.r2.getTimer().start();
 
-        this.timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 5);
+        this.timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 75);
         this.add(timeBar);
         this.timeBar.setVisible(true);
         this.timeBar.setBounds(250, 10, 500, 10);
