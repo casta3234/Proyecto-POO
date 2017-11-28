@@ -88,34 +88,38 @@ public class Tablero extends JPanel implements ActionListener {
     public void checkColision() {
         if (this.p.intersectsVertical(this.r1.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
-            this.p.setRaqueta(1);            
-        } else if (this.p.intersectsHorizontal(this.r1.getR())) {
-            this.p.setAnguloy(-this.p.getAnguloy());
-            this.p.setRaqueta(1);
+            this.p.setRaqueta(1); 
             if (this.timer.getDelay() > 2) {
                 this.timer.setDelay(this.timer.getDelay() - 2);
                 counter++;
                 this.timeBar.setValue(counter);
             } else {
+                counter++;
+                this.timeBar.setValue(counter);
                 JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!");
-                this.time.stop();
+                this.timer.stop();
             }
+        } else if (this.p.intersectsHorizontal(this.r1.getR())) {
+            this.p.setAnguloy(-this.p.getAnguloy());
+            this.p.setRaqueta(1);
         }
 
         if (this.p.intersectsVertical(this.r2.getR())) {
             this.p.setAngulox(-this.p.getAngulox());
             this.p.setRaqueta(2);
-        } else if (this.p.intersectsHorizontal(this.r2.getR())) {
-            this.p.setAnguloy(-this.p.getAnguloy());
-            this.p.setRaqueta(2);
             if (this.timer.getDelay() > 2) {
                 this.timer.setDelay(this.timer.getDelay() - 2);
                 counter++;
                 this.timeBar.setValue(counter);
             } else {
+                counter++;
+                this.timeBar.setValue(counter);
                 JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!");
-                this.time.stop();
+                this.timer.stop();
             }
+        } else if (this.p.intersectsHorizontal(this.r2.getR())) {
+            this.p.setAnguloy(-this.p.getAnguloy());
+            this.p.setRaqueta(2);            
         }
 
         for (Bloque b : this.bloque) {
