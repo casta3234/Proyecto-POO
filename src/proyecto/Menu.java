@@ -71,6 +71,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         if (this.rotate) {
             botonOff.setVisible(false);
             botonOn.setVisible(false);
+            botonOpt.setVisible(false);
             Graphics2D g2d = (Graphics2D) g;
             g.drawImage(this.img, 0, 0, null);
             g2d.rotate(this.angulo, 500, 250);
@@ -78,6 +79,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         } else {
             botonOff.setVisible(true);
             botonOn.setVisible(true);
+            botonOpt.setVisible(true);
             g.drawImage(this.img, 0, 0, null);
         }
     }
@@ -144,9 +146,27 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             this.rotate = true;
             this.repaint();
             this.timer.stop();
-        } //  else if(this.click == 3){
-//            ImageIcon menuOpt = 
-//      }
+        } else if(this.click == 3){
+            ImageIcon nombreUsuario = new ImageIcon(url + "");
+            botonOff.setIcon(nombreUsuario);
+            botonOff.setSize(nombreUsuario.getIconWidth(), nombreUsuario.getIconHeight());
+            botonOff.setLocation(500 - (nombreUsuario.getIconWidth() / 2), 100 - (83 / 2));
+            
+            ImageIcon hScores = new ImageIcon(url + "leaderboardsComplex.png");
+            botonOn.setIcon(hScores);
+            botonOn.setSize(hScores.getIconWidth(), hScores.getIconHeight());
+            botonOn.setLocation(500 - (hScores.getIconWidth() / 2), 300 - (82 / 2));
+            
+            ImageIcon regresar = new ImageIcon(url + "");
+            botonOpt.setIcon(regresar);
+            botonOpt.setSize(regresar.getIconWidth(), regresar.getIconHeight());
+            botonOpt.setLocation(950 - (regresar.getIconWidth() / 2), 450 - (81 / 2));
+            
+            //this.img = new ImageIcon(this.url + "Fondo.png").getImage();
+            this.rotate = true;
+            this.repaint();
+            this.timer.stop();
+     }
     }
 
     public Timer getTimer() {
