@@ -40,18 +40,6 @@ public class Tablero extends JPanel implements ActionListener {
         super();
         this.url = url;
         this.width = v.getWidth();
-        this.score1 = new JTextField("");
-        this.score1.setBounds(0, 10, 30, 20);
-        this.add(score1);
-        this.score1.setFont(new Font("Monospaced", Font.BOLD, 15));
-        this.score1.setText(String.valueOf(sc1));
-        this.score1.setVisible(true);
-        this.score2 = new JTextField("");
-        this.score2.setBounds(970, 10, 30, 20);
-        this.add(score2);
-        this.score2.setFont(new Font("Monospaced", Font.BOLD, 15));
-        this.score2.setText(String.valueOf(sc2));
-        this.score2.setVisible(true);
 
         this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 1);
         this.r2 = new Raqueta(urlR + "Raqueta2", 990, 180, 2);
@@ -272,9 +260,9 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void puntaje() {
 
-       // this.score1.setText(String.valueOf(sc1));
+        this.score1.setText(String.valueOf(sc1));
 
-       // this.score2.setText(String.valueOf(sc2));
+        this.score2.setText(String.valueOf(sc2));
     }
 
     @Override
@@ -330,6 +318,18 @@ public class Tablero extends JPanel implements ActionListener {
         this.timeBar.setVisible(true);
         this.timeBar.setBounds(250, 10, 500, 10);
 
+        this.score1 = new JTextField("");
+        this.score1.setBounds(0, 10, 30, 20);
+        this.add(score1);
+        this.score1.setFont(new Font("Monospaced", Font.BOLD, 15));
+        this.score1.setText(String.valueOf(sc1));
+        this.score1.setVisible(true);
+        this.score2 = new JTextField("");
+        this.score2.setBounds(970, 10, 30, 20);
+        this.add(score2);
+        this.score2.setFont(new Font("Monospaced", Font.BOLD, 15));
+        this.score2.setText(String.valueOf(sc2));
+        this.score2.setVisible(true);
     }
 
     public Raqueta getR1() {
