@@ -272,9 +272,9 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void puntaje() {
 
-        this.score1.setText(String.valueOf(sc1));
+       // this.score1.setText(String.valueOf(sc1));
 
-        this.score2.setText(String.valueOf(sc2));
+       // this.score2.setText(String.valueOf(sc2));
     }
 
     @Override
