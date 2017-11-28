@@ -29,19 +29,19 @@ public class Tablero extends JPanel implements ActionListener {
     private JLabel score1;
     private JLabel score2;
 
-    public Tablero(JFrame v, String url, String urlR1, String urlR2) {
+    public Tablero(JFrame v, String url, String urlR) {
         super();
         this.url = url;
         this.width = v.getWidth();
         this.score1 = new JLabel("prueba");
         this.score2 = new JLabel("prueba");
 
-        this.r1 = new Raqueta(urlR1, 0, 180, 1);
-        this.r2 = new Raqueta(urlR2, 990, 180, 2);
+        this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 1);
+        this.r2 = new Raqueta(urlR + "Raqueta2", 990, 180, 2);
         this.iniciar(v);
     }
 
-    public Tablero(JFrame v, String url, String urlR1, String urlR2, boolean host, String ip, int puerto) {
+    public Tablero(JFrame v, String url, String urlR, boolean host, String ip, int puerto) {
         super();
         this.url = url;
         this.width = v.getWidth();
@@ -49,12 +49,12 @@ public class Tablero extends JPanel implements ActionListener {
         this.score2 = new JLabel("prueba2");
 
         if (host) {
-            this.r1 = new Raqueta(urlR1, 0, 180, 1, ip, puerto);
+            this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 1, ip, puerto);
             String ipSocket = this.r1.getIp();
-            this.r2 = new Raqueta(urlR2, 990, 180, 2, ipSocket, puerto + 1);
+            this.r2 = new Raqueta(urlR + "Raqueta2", 990, 180, 2, ipSocket, puerto + 1);
         } else {
-            this.r1 = new Raqueta(urlR1, 0, 180, 2, ip, puerto);
-            this.r2 = new Raqueta(urlR2, 990, 180, 1, ip, puerto + 1);
+            this.r1 = new Raqueta(urlR + "Raqueta1", 0, 180, 2, ip, puerto);
+            this.r2 = new Raqueta(urlR + "Raqueta2", 990, 180, 1, ip, puerto + 1);
         }
         this.iniciar(v);
     }
@@ -141,7 +141,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.timer.setDelay(10);
             this.timer.setDelay(10);
             this.p.changePelota();
-            
+
         }
 
         if (this.p.getx() > 1010) {
@@ -201,10 +201,9 @@ public class Tablero extends JPanel implements ActionListener {
     public final void iniciar(JFrame v) {
         this.setFocusable(true);
         this.bloques = new ArrayList<>();
-        
+
         this.add(r1);
         this.add(r2);
-        
 
         this.p = new Pelota(487, 220);
         this.add(p);
@@ -221,12 +220,12 @@ public class Tablero extends JPanel implements ActionListener {
         this.timer.addActionListener(p);
         this.r1.getTimer().start();
         this.r2.getTimer().start();
-                
+
         this.CountTimeBar();
         this.add(timeBar);
         this.timeBar.setVisible(true);
         this.timeBar.setBounds(250, 10, 500, 10);
-        
+
     }
 
     public Raqueta getR1() {
@@ -236,24 +235,25 @@ public class Tablero extends JPanel implements ActionListener {
     public Raqueta getR2() {
         return r2;
     }
-    
+
     public void CountTimeBar() {
         timeBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 10);
         timeBar.setValue(10);
         ActionListener listener = new ActionListener() {
             int counter = 0;
+
+            @Override
             public void actionPerformed(ActionEvent ae) {
                 counter++;
                 timeBar.setValue(counter);
-                if (counter>10) {
+                if (counter > 10) {
                     JOptionPane.showMessageDialog(null, "Se acabo el tiempo. RONDA FINALIZADA!!");
                     timer.stop();
-                } 
+                }
             }
         };
         timer = new Timer(1000, listener);
         timer.start();
-        
     }
-    
+
 }
