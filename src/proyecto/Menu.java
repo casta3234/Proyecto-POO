@@ -23,7 +23,6 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
     private int click;
     private boolean rotate;
     private boolean subM;
-    private boolean menuCambioNombre;
     private String ip;
     private int puerto;
     private final String url;
