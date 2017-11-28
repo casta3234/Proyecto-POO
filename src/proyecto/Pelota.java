@@ -22,6 +22,7 @@ public class Pelota extends JLabel implements ActionListener {
     private Rectangle r;
     private int contador;
     private int width, height;
+    private int raqueta;
 
     public Pelota(int x, int y) {
         super();
@@ -42,6 +43,7 @@ public class Pelota extends JLabel implements ActionListener {
         this.r = new Rectangle(this.x, this.y, this.width, this.height);
 
         this.contador = 0;
+        this.raqueta = 0;
     }
 
     public boolean intersectsVertical(Rectangle r) {
@@ -139,6 +141,15 @@ public class Pelota extends JLabel implements ActionListener {
     public Rectangle getR() {
         return r;
     }
+
+    public int getRaqueta() {
+        return raqueta;
+    }
+
+    public void setRaqueta(int raqueta) {
+        this.raqueta = raqueta;
+    }
+    
 
     public void changePelota() {
         if (this.contador < 8) {

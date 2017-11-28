@@ -58,4 +58,8 @@ public class Bloque extends JLabel {
         return vida;
     }
 
+    public int getNumero() {
+        return numero;
+    }
+    
 }
