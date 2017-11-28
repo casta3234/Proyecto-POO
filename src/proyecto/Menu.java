@@ -106,9 +106,9 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             g2d.drawImage(this.reloj, 500 - (84 / 2), 250 - (141 / 2), null);
         } else if(this.subM){
             g.drawImage(this.img, 0, 0, null);
-            botonOff.setVisible(false);
-            botonOn.setVisible(false);
-            botonOpt.setVisible(false);
+            botonOff.setVisible(true);
+            botonOn.setVisible(true);
+            botonOpt.setVisible(true);
             botonScores.setVisible(true);
             botonName.setVisible(true);
             botonBack.setVisible(true);
@@ -116,9 +116,9 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             botonOff.setVisible(true);
             botonOn.setVisible(true);
             botonOpt.setVisible(true);
-            botonName.setVisible(true);
-            botonScores.setVisible(true);
-            botonBack.setVisible(true);
+            botonName.setVisible(false);
+            botonScores.setVisible(false);
+            botonBack.setVisible(false);
             g.drawImage(this.img, 0, 0, null);
         }
     }
@@ -172,6 +172,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (this.click == 1) {
             this.rotate = true;
+            this.subM = false;
             this.img = new ImageIcon(this.url + "letras.png").getImage();
             this.repaint();
             if (this.angulo > -((int) (300 * Math.random()))) {
@@ -192,10 +193,12 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             
             this.img = new ImageIcon(this.url + "conexion.png").getImage();
             this.rotate = true;
+            this.subM = false;
             this.repaint();
             this.timer.stop();
         } else if(this.click == 3){
             this.img = new ImageIcon(this.url + "Fondo.png").getImage();
+            this.rotate = false;
             this.subM = true;
             this.repaint();
         } else if(this. click == 4){
@@ -204,6 +207,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             //Evento que ocurre al oprimir el botón de ver altos puntajes
         } else if(this. click == 6){
            this.rotate = false;
+           this.subM = false;
            this.repaint();
         }
     }

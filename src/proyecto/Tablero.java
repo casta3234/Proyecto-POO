@@ -166,7 +166,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.score2.setLocation(450, 10);
         if (this.p.getx() < 0) {
             this.sc2++;
-            //this.score2.setBounds(10, 10, 500, 10);
+            this.score2.setBounds(10, 10, 500, 10);
             
             this.score2.setText(String.valueOf(sc2));
         }
@@ -175,7 +175,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.sc1++;
 
             this.score1.setText(String.valueOf(sc1));
-            //this.score1.setBounds(990, 10, 20, 20);
+            this.score1.setBounds(990, 10, 20, 20);
         }
         this.score1.setVisible(true);
         this.score2.setVisible(true);
