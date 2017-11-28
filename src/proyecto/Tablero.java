@@ -24,11 +24,18 @@ public class Tablero extends JPanel implements ActionListener {
     private ArrayList<Bloque> bloques;
     private final String url;
     private JProgressBar timeBar;
+    private int sc1 = 0;
+    private int sc2 = 0;
+    private JLabel score1;
+    private JLabel score2;
 
     public Tablero(JFrame v, String url, String urlR1, String urlR2) {
         super();
         this.url = url;
         this.width = v.getWidth();
+        this.score1 = new JLabel("");
+        this.score1 = new JLabel("");
+        
 
         this.r1 = new Raqueta(urlR1, 0, 180, 1);
         this.r2 = new Raqueta(urlR2, 990, 180, 2);
@@ -133,6 +140,7 @@ public class Tablero extends JPanel implements ActionListener {
             this.timer.setDelay(10);
             this.timer.setDelay(10);
             this.p.changePelota();
+            
         }
 
         if (this.p.getx() > 1010) {
@@ -149,6 +157,22 @@ public class Tablero extends JPanel implements ActionListener {
         this.r2.setVisible(false);
         this.r2.setVisible(true);
     }
+    
+    public void puntaje() {
+        if (this.p.getx() < 0) {
+            this.sc2++;
+            this.score2.setBounds(10, 10, 20, 20);
+            this.add(score2);
+            this.score2.setText(String.valueOf(sc2));
+        }
+
+        if (this.p.getx() > 1010) {
+            this.sc1++;
+            this.add(score1);
+            this.score1.setText(String.valueOf(sc1));
+            this.score1.setBounds(990, 10, 20, 20);
+        }
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -160,6 +184,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.checkColision();
         this.BorrarBloques();
         this.salida();
+        this.puntaje();
         if (this.bloques.size() < 10) {
             this.makeBloque();
         }
@@ -171,6 +196,7 @@ public class Tablero extends JPanel implements ActionListener {
         
         this.add(r1);
         this.add(r2);
+        
 
         this.p = new Pelota(487, 220);
         this.add(p);
@@ -192,6 +218,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.add(timeBar);
         this.timeBar.setVisible(true);
         this.timeBar.setBounds(250, 10, 500, 10);
+        
     }
 
     public Raqueta getR1() {
