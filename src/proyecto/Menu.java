@@ -65,7 +65,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         botonOpt.setVisible(true);
         this.add(botonOpt);
         
-        //Agregar boton para cambio de nombre
+        //Agregar icono de boton para cambio de nombre
         ImageIcon nombreUsuario = new ImageIcon(url + "");
         botonName = new JLabel(nombreUsuario);
         botonName.setSize(nombreUsuario.getIconWidth(), nombreUsuario.getIconHeight());
@@ -80,7 +80,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         botonScores.setVisible(false);
         this.add(botonScores);
          
-        //Agregar botón de regreso a menu principal desde submenu de opciones
+        //Agregar icono de boton de regreso a menu principal desde submenu de opciones
         ImageIcon regresar = new ImageIcon(url + "");
         botonBack = new JLabel(regresar);
         botonBack.setSize(regresar.getIconWidth(), regresar.getIconHeight());
@@ -206,7 +206,7 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         } else if(this. click == 6){
            this.rotate = false;
            this.repaint();
-        } 
+        }
     }
 
     public Timer getTimer() {
