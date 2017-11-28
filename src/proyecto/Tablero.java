@@ -33,9 +33,8 @@ public class Tablero extends JPanel implements ActionListener {
         super();
         this.url = url;
         this.width = v.getWidth();
-        this.score1 = new JLabel("");
-        this.score1 = new JLabel("");
-        
+        this.score1 = new JLabel("prueba");
+        this.score2 = new JLabel("prueba");
 
         this.r1 = new Raqueta(urlR1, 0, 180, 1);
         this.r2 = new Raqueta(urlR2, 990, 180, 2);
@@ -46,6 +45,8 @@ public class Tablero extends JPanel implements ActionListener {
         super();
         this.url = url;
         this.width = v.getWidth();
+        this.score1 = new JLabel("prueba");
+        this.score2 = new JLabel("prueba2");
 
         if (host) {
             this.r1 = new Raqueta(urlR1, 0, 180, 1, ip, puerto);
@@ -157,21 +158,28 @@ public class Tablero extends JPanel implements ActionListener {
         this.r2.setVisible(false);
         this.r2.setVisible(true);
     }
-    
+
     public void puntaje() {
+        this.add(score2);
+        this.add(score1);
+        this.score1.setLocation(10, 10);
+        this.score2.setLocation(450, 10);
         if (this.p.getx() < 0) {
             this.sc2++;
-            this.score2.setBounds(10, 10, 20, 20);
-            this.add(score2);
+            //this.score2.setBounds(10, 10, 500, 10);
+            
             this.score2.setText(String.valueOf(sc2));
         }
 
         if (this.p.getx() > 1010) {
             this.sc1++;
-            this.add(score1);
+
             this.score1.setText(String.valueOf(sc1));
-            this.score1.setBounds(990, 10, 20, 20);
+            //this.score1.setBounds(990, 10, 20, 20);
         }
+        this.score1.setVisible(true);
+        this.score2.setVisible(true);
+
     }
 
     @Override
@@ -184,10 +192,10 @@ public class Tablero extends JPanel implements ActionListener {
         this.checkColision();
         this.BorrarBloques();
         this.salida();
-        this.puntaje();
         if (this.bloques.size() < 10) {
             this.makeBloque();
         }
+        this.puntaje();
     }
 
     public final void iniciar(JFrame v) {

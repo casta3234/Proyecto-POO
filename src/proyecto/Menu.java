@@ -65,26 +65,26 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
         this.add(botonOpt);
         
         //Agregar icono de boton para cambio de nombre
-        ImageIcon nombreUsuario = new ImageIcon(url + "");
+        ImageIcon nombreUsuario = new ImageIcon(url + "singleplayer.png");
         botonName = new JLabel(nombreUsuario);
         botonName.setSize(nombreUsuario.getIconWidth(), nombreUsuario.getIconHeight());
-        botonName.setLocation(500 - (nombreUsuario.getIconWidth() / 2), 100 - (83 / 2));
-        botonName.setVisible(false);
+        botonName.setLocation(850 - (nombreUsuario.getIconWidth() / 2), 450 - (83 / 2));
+        botonName.setVisible(true);
         this.add(botonName);
         
         ImageIcon hScores = new ImageIcon(url + "leaderboardsComplex.png");
         botonScores = new JLabel(hScores);
         botonScores.setSize(hScores.getIconWidth(), hScores.getIconHeight());
-        botonScores.setLocation(500 - (hScores.getIconWidth() / 2), 300 - (82 / 2));
-        botonScores.setVisible(false);
+        botonScores.setLocation(750 - (hScores.getIconWidth() / 2), 450 - (82 / 2));
+        botonScores.setVisible(true);
         this.add(botonScores);
          
         //Agregar icono de boton de regreso a menu principal desde submenu de opciones
-        ImageIcon regresar = new ImageIcon(url + "");
+        ImageIcon regresar = new ImageIcon(url + "return.png");
         botonBack = new JLabel(regresar);
         botonBack.setSize(regresar.getIconWidth(), regresar.getIconHeight());
-        botonBack.setLocation(950 - (regresar.getIconWidth() / 2), 450 - (81 / 2));
-        botonBack.setVisible(false);
+        botonBack.setLocation(650 - (regresar.getIconWidth() / 2), 450 - (81 / 2));
+        botonBack.setVisible(true);
         this.add(botonBack);
 
         this.timer = new Timer(250, this);
@@ -116,9 +116,9 @@ public class Menu extends JPanel implements MouseListener, ActionListener {
             botonOff.setVisible(true);
             botonOn.setVisible(true);
             botonOpt.setVisible(true);
-            botonName.setVisible(false);
-            botonScores.setVisible(false);
-            botonBack.setVisible(false);
+            botonName.setVisible(true);
+            botonScores.setVisible(true);
+            botonBack.setVisible(true);
             g.drawImage(this.img, 0, 0, null);
         }
     }
